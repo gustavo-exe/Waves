@@ -68,6 +68,14 @@ const TopArtistAndTracks = ({route, navigation}) =>
                 return (
                     <View>
                         <Card>
+                            
+                                <CardItem cardBody>
+                                    {console.log(item.images)}
+                                   { item.images.map((image)=> (
+                                    <Image key={image.id} source={{uri: image.url}} style={styles.topImage}></Image>
+                                    ))
+                                    }
+                                </CardItem>
                             <CardItem>
                                 <Body>
                                     <H3>
@@ -85,4 +93,16 @@ const TopArtistAndTracks = ({route, navigation}) =>
         
     );
 };
+
+const styles = StyleSheet.create
+(
+    {
+        topImage:
+        {
+            width: width *0.99,
+            height: height * 0.5
+        }
+    }
+);
+
 export default TopArtistAndTracks;
