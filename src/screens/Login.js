@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet,Button,View,Text,Dimensions, Image } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
 //import Constants from 'expo-Constants';
@@ -47,6 +47,7 @@ const Login = ({navigation}) => {
     setResult(result);
   };
 
+
   return (
    <>
         <View style={styles.TituloDeIntrucciones}>
@@ -64,7 +65,7 @@ const Login = ({navigation}) => {
         <View style={styles.IntereaccionDeIntruscciones}>
         <Button title="Open WebBrowser" onPress={_handlePressButtonAsync} />
         <Input placeholder="Link" value={token} onChangeText={setToken} ></Input>
-
+        
         <Button title="Cambiar" onPress={ () => navigation.navigate('WaveHome',{token})} />
         </View>
       

@@ -1,10 +1,16 @@
 import { Content,H1} from "native-base";
 import { Button} from 'react-native';
 import React, { useEffect, useState } from "react";
+import {ObtenerToken}from "../api/backend";
 
 const Home = ({route, navigation}) =>
 {
     const { token } = route.params;
+    useEffect(()=>
+    {
+      ObtenerToken(token);  
+    });
+    
 
     return(
         <Content>
@@ -14,5 +20,6 @@ const Home = ({route, navigation}) =>
         
     )
 }
+
 
 export default Home;

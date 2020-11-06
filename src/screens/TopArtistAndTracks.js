@@ -2,10 +2,10 @@
  * Modulos necesarios
  */
 import React , {useEffect, useState} from "react";
-import { StyleSheet, Text, View, Image, Dimensions,FlatList } from "react-native";
+import { StyleSheet,Text, View, Image, Dimensions,FlatList, ImageBackgroundBase, ImageBackground } from "react-native";
 import  {   Input,  Container,  Item,  H1,  Button,
             Header,  Icon,  Spinner,  Card,  CardItem,
-            H3,  Body
+            H3, Body
         } from "native-base";
 
 import backend from "../api/backend";
@@ -26,7 +26,7 @@ const TopArtistAndTracks = ({route, navigation}) =>
         console.log("Asincrona");
         try {
             //Consulta a la api
-            const response = await backend.get(`me/top/artists?time_range=medium_term&limit=10&offset=5`);
+            const response = await backend.get(`me/top/artists?time_range=long_term&limit=50&offset=0`);
             
             console.log("Estas aqui");
             console.log(response.data);
@@ -67,7 +67,7 @@ const TopArtistAndTracks = ({route, navigation}) =>
              renderItem={({item})=>{
                 return (
                     <View>
-                        <Card>
+                        <Card style={styles.CardItem} >
                             
                                 <CardItem cardBody>
                                     {console.log(item.images)}
@@ -81,6 +81,9 @@ const TopArtistAndTracks = ({route, navigation}) =>
                                     <H3>
                                         {item.name}
                                     </H3>
+                                    <Text>
+                                        {item.popularity} %
+                                    </Text>
                                 </Body>
                             </CardItem>
                         </Card>
@@ -97,10 +100,20 @@ const TopArtistAndTracks = ({route, navigation}) =>
 const styles = StyleSheet.create
 (
     {
+        CardItem:
+        {
+            left:15,
+            width: width *0.91,
+            height: height * 0.5
+        },
+
         topImage:
         {
-            width: width *0.99,
-            height: height * 0.5
+            left: 0,
+            right:20,
+            width:width *0.81 ,
+            height: height * 0.3,
+            margin: 20
         }
     }
 );
