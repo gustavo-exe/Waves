@@ -20,6 +20,7 @@ const TopArtistAndTracks = ({route, navigation}) =>
     //Estado del TOP
     const [top, setTop] = useState(null);
     const [error, setError] = useState(false);
+    const [itemId, setItemId] = useState(null);
 
     //Promesa
     const getTop = async () =>  {
@@ -55,8 +56,6 @@ const TopArtistAndTracks = ({route, navigation}) =>
       }
 
 
-    const { token } = route.params;
-
     return(
         <Container>
             
@@ -83,9 +82,20 @@ const TopArtistAndTracks = ({route, navigation}) =>
                                     </H3>
                                     <Text>
                                         {item.popularity} %
+                                        {}
                                     </Text>
+
+                                   < CardItem button onPress={ () => {navigation.navigate('WaveAbout','6jJ0s89eD6GaHleKKya26X')}}>
+                                        <Text>
+                                            
+                                            Acerca de
+                                        </Text>
+                                    </CardItem>
+
                                 </Body>
                             </CardItem>
+
+                            
                         </Card>
                     </View>
                 )

@@ -9,14 +9,15 @@ var AuthToken;
 export function ObtenerToken(token)
 {
      
-    var AuthToken = token;
+    AuthToken = token;
     console.log("Backend!!",AuthToken);
 
 }
 
 
 console.log("Porque:", AuthToken);
-const Auth='BQCaJ11ij3IDyJnjOL2tiJPAgXrG3NU3oZPIKTlRCa711yN3k5pl3NHc6Hn06I5WDSCcIXdL6GkNri9SxxVM_5vf-i6Q68Lr1-lEXgH0oGP_92SAflM9v9EuQaDk2nZp8U2yqTMjep3LjRXaJz33s7qY87POiLzBqTRWKNfSGIMJOGZ6b8q8zgQSc8bwR-m_onl7OKKU7p23-f14xFUEcghS4pbRslMuPAEY-a27lJPuc0i07Vkw2Z4lu296Bjd3b22oup_eCA_AfDJowp7z3UiHoak-h0D1uGY';
+
+const Auth='BQAGEelgR-Gd0fPN6Cek5wFJlLv0ihnjBgPTy08CB3u3kEgZBp0kPf_ziYWKYmWSSPx-C6HpG6TsG1mnhVOnVohJ0zXM786NfKnMSnI5TIg995j_vh3ebLRyP8ACVnTSbGYoyz7lN9L9eZG9M08VslyMFd0q_BbYMtRujyvQWiJK4tZMgwRV5KWUxSS7rf8xvvquUb2qLSvJfKH9ALJEldafVClDar1apG7u2fLbhHEAg9duDkKsbtp6-SdWfxpSU7sH8fOw1bhxKa5e-s85-LWjlBZiGMlq3LQ';
 const instance = axios.create({
     
     baseURL: "https://api.spotify.com/v1/",

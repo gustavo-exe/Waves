@@ -25,6 +25,8 @@ export const accessUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${r
   "%20"
 )}&response_type=token&show_dialog=true`;
 
+
+
 import Constants from "expo-constants";
 
 const ENV ={
