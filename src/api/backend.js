@@ -17,7 +17,7 @@ export function ObtenerToken(token)
 
 console.log("Porque:", AuthToken);
 
-const Auth='BQAGEelgR-Gd0fPN6Cek5wFJlLv0ihnjBgPTy08CB3u3kEgZBp0kPf_ziYWKYmWSSPx-C6HpG6TsG1mnhVOnVohJ0zXM786NfKnMSnI5TIg995j_vh3ebLRyP8ACVnTSbGYoyz7lN9L9eZG9M08VslyMFd0q_BbYMtRujyvQWiJK4tZMgwRV5KWUxSS7rf8xvvquUb2qLSvJfKH9ALJEldafVClDar1apG7u2fLbhHEAg9duDkKsbtp6-SdWfxpSU7sH8fOw1bhxKa5e-s85-LWjlBZiGMlq3LQ';
+const Auth='BQCN5ZODJJkN7pGhy0JI7D82j-GCuN3VeHioZU4OoW0k6wPQUqtd9sqK8IvcHvJd66E7mYnYQXNKr63-VUowEzXzOuj15tS4RD48QSKyqxpzP_FCJ1ylfW9k5UqZery7eznZHWZueP5W_RIPWEc80RtAh9lxPqmiGq35HroF4FrGGVUVNqfwFVzZQze5-Rnlzixkhmhi4DwM3i2XBj2xk1iAm9lpugkC8tP8Z8_kNiDOrVe3_J8y9d9Bn7NZ2v4Bhu-r0KJMbG4pBmXOQwy9vGhiTXvFh_sJM4U';
 const instance = axios.create({
     
     baseURL: "https://api.spotify.com/v1/",

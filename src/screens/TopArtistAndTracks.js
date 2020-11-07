@@ -29,8 +29,8 @@ const TopArtistAndTracks = ({route, navigation}) =>
             //Consulta a la api
             const response = await backend.get(`me/top/artists?time_range=long_term&limit=50&offset=0`);
             
-            console.log("Estas aqui");
-            console.log(response.data);
+            //console.log("Estas aqui");
+            //console.log(response.data);
             setTop(response.data);
             
         } catch (error) {
@@ -43,7 +43,7 @@ const TopArtistAndTracks = ({route, navigation}) =>
     //hook de efecto
     useEffect(() =>
     {
-        console.log("Haciendo promesa");
+
         getTop();
     },[]);
 
@@ -57,38 +57,37 @@ const TopArtistAndTracks = ({route, navigation}) =>
 
 
     return(
-        <Container>
-            
-            <FlatList
+        <Container style={styles.Contenedor}>
+           
+           <FlatList
              data = {top.items}
              keyExtractor={(item) => item.id}
              ListEmptyComponent={<Text>No se han encontrado peliculas</Text>}
              renderItem={({item})=>{
                 return (
                     <View>
-                        <Card style={styles.CardItem} >
+                        <Card  style={styles.CardContainer} >
                             
-                                <CardItem cardBody>
+                                <CardItem style={styles.CardItem} cardBody>
                                     {console.log(item.images)}
                                    { item.images.map((image)=> (
                                     <Image key={image.id} source={{uri: image.url}} style={styles.topImage}></Image>
                                     ))
                                     }
                                 </CardItem>
-                            <CardItem>
+                           
+                            <CardItem style={styles.CardItemText}  >
                                 <Body>
-                                    <H3>
+                                    <H3 style={styles.Tittle}>
                                         {item.name}
                                     </H3>
-                                    <Text>
+                                    <Text style={styles.Porcentaje}>
                                         {item.popularity} %
-                                        {}
                                     </Text>
 
-                                   < CardItem button onPress={ () => {navigation.navigate('WaveAbout','6jJ0s89eD6GaHleKKya26X')}}>
-                                        <Text>
-                                            
-                                            Acerca de
+                                   < CardItem style={styles.ButtonCardItem} button onPress={ () => navigation.navigate('WaveAbout',{id: item.id})}>
+                                        <Text style={{ color: '#94618e',right:17}} > 
+                                            Mas..
                                         </Text>
                                     </CardItem>
 
@@ -100,7 +99,7 @@ const TopArtistAndTracks = ({route, navigation}) =>
                     </View>
                 )
             }}
-            />
+            /> 
 
         </Container>
         
@@ -110,8 +109,44 @@ const TopArtistAndTracks = ({route, navigation}) =>
 const styles = StyleSheet.create
 (
     {
+        Contenedor:
+        {
+            
+            height: height,
+            backgroundColor: '#F4DECB',
+        },
         CardItem:
         {
+            height:'70%',
+            backgroundColor: 'rgba(64,62,62,80)'
+        },
+        CardItemText:
+        {
+            height:'30%',
+            backgroundColor: 'rgba(64,62,62,80)'
+        },
+
+
+        Tittle:
+        {
+            color: '#F4DECB',
+            fontWeight: 'bold'
+        },
+        ButtonCardItem:
+        {
+            position: "relative",
+            width: '60%',
+            height:'40%',
+            left:0,
+            backgroundColor: 'rgba(64,62,62,80)'
+        },
+        Porcentaje:
+        {
+            color: 'white'
+        },
+        CardContainer:
+        {
+           
             left:15,
             width: width *0.91,
             height: height * 0.5
@@ -119,6 +154,9 @@ const styles = StyleSheet.create
 
         topImage:
         {
+            
+            
+                      
             left: 0,
             right:20,
             width:width *0.81 ,
