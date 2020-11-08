@@ -18,18 +18,30 @@ export default function App()
 {
   return(
     <NavigationContainer>
+      {/*
+        Esta es nuestra status bar donde estan los iconos de notificacion
+        y tiene propiedades para que se muestre 'hidden'
+      */}
       <StatusBar  barStyle="light-content" hidden={false} backgroundColor="#49274A" translucent={true} />
-    <Stack.Navigator initialRouteName="movieList">
+      
+      <Stack.Navigator initialRouteName="movieList">
       <Stack.Screen name="WaveLogin" component={Login} />
       <Stack.Screen name="WaveHome" component={Home} />
+  {
+    /**
+     * Cada stack screen es una pantalla
+     */
+  }
       <Stack.Screen 
+      {{
+        /**
+         * Estas son las propiedades para la barra de navegacion encabezado
+         */
+      }}
       options={{
         title: 'Top artistas',
-   
-
         headerStyle: 
         {
-            
           backgroundColor: '#49274A',
         },
         headerTintColor: '#fff',
@@ -40,6 +52,7 @@ export default function App()
         },
       }}
       name="WaveTop" component={Top} />
+
       <Stack.Screen 
       options={{
         title: 'Informacion',
@@ -58,8 +71,6 @@ export default function App()
     </Stack.Navigator>
   </NavigationContainer>
   ) 
-  
-  
   //<Login></Login>;
 }
 

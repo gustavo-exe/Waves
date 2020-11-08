@@ -43,7 +43,6 @@ const TopArtistAndTracks = ({route, navigation}) =>
     //hook de efecto
     useEffect(() =>
     {
-
         getTop();
     },[]);
 
@@ -154,9 +153,7 @@ const styles = StyleSheet.create
 
         topImage:
         {
-            
-            
-                      
+
             left: 0,
             right:20,
             width:width *0.81 ,
