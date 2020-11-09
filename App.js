@@ -33,11 +33,11 @@ export default function App()
      */
   }
       <Stack.Screen 
-      {{
-        /**
+      
+        /*
          * Estas son las propiedades para la barra de navegacion encabezado
          */
-      }}
+      
       options={{
         title: 'Top artistas',
         headerStyle: 
