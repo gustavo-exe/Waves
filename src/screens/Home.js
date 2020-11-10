@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import {ObtenerToken}from "../api/backend";
-import { Content,H1, H3, View, Input, Container, Left, Spinner, Item, Card, CardItem, Body} from "native-base";
-import { Button, StyleSheet, Image, Icon, Text} from 'react-native';
+import { Content,H1, H3, Input, Container, Left, Spinner, Item, Card, CardItem, Body, header, Button, Icon} from "native-base";
+import { StyleSheet, Image, Text, Dimensions, FlatList, View} from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
-import { FlatList } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native-gesture-handler";
+
+// Valores del destructing
+const {width, height} = Dimensions.get("window");
 
 const Home = ({route, navigation}) =>
 {
@@ -16,11 +19,12 @@ const Home = ({route, navigation}) =>
     //Promesas
     const getArtist = async () =>{
         try {
-            const response = await backend.get(`me/top/artists?time_range=long_term&limit=1&offset=0`)
-
+            const response = await backend.get(`me/top/artists?time_range=long_term&limit=1&offset=0`);
+            //console.log(response);
             setArtist(response.data);
         } catch (error) {
             setError(true);
+            //console.log(error);
         }
     }
 
@@ -37,9 +41,28 @@ const Home = ({route, navigation}) =>
         )
     }
 
+    /*return(
+        <Container style={styles.Contenedor}>
+            <H1 style={styles.title}> Hi </H1>
+            <H1 style={styles.title}> gustavo.exe </H1>
+            <Text style={styles.text}>most listened artists</Text>
+            <Card style={styles.CardContainer} >
+                <CardItem style={styles.CardItem} cardBody>
+                    <Body>
+                        {console.log(item.images)}
+                        { item.images.map((image)=> (
+                            <Image key={image.id} source={{uri: image.url}} style={styles.artistImage}></Image>
+                        ))
+                        }
+                    </Body>
+                </CardItem>
+            </Card>
+        </Container>
+    )*/
+
     //const { token } = route.params;
     return(
-        <Container>
+        <Container style={styles.Contenedor}>
             <View style={styles.header}>
                 <Image style={styles.logo} source={require('../../assets/WaveWhite.png')} />
                 <Entypo style={styles.out} name="log-out" size={39} color="black"/>
@@ -56,23 +79,21 @@ const Home = ({route, navigation}) =>
                 renderItem={({ item }) =>{
                     return(
                         <View>
-                            <Card>
-                                <CardItem>
+                            <Card style={styles.CardContainer}>
+                                <CardItem style={styles.CardItem} cardBody>
                                     <Body>
+                                        {console.log(item.images)}
+                                        { item.images.map((image)=> (
                                         <Image source= {item.image} alt={item.image} style={styles.artistImage}/>
-                                        <Text>{item.name}</Text>
+                                        ))
+                                        //<Text>{item.name}</Text>
+                                        }   
                                     </Body>
-                                    
                                 </CardItem>
-                            
                             </Card>
-                        
                         </View>
                     )
                     
-                     
-                    
-                   
                 }}
             />
 
@@ -86,7 +107,7 @@ const Home = ({route, navigation}) =>
 }
 
 const styles = StyleSheet.create({
-    container: {
+    Contenedor: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
@@ -117,6 +138,27 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         left: 12,
         top: 25,
+    },
+
+    CardContainer: {
+           
+        left:15,
+        width: width *0.91,
+        height: height * 0.5
+    },
+    CardItem:
+        {
+            height:'70%',
+            backgroundColor: 'rgba(64,62,62,80)'
+    },
+    artistImage:
+        {
+
+            left: 0,
+            right:20,
+            width:width *0.81 ,
+            height: height * 0.3,
+            margin: 20
     },
     /*const { token } = route.params;
     useEffect(()=>
