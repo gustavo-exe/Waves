@@ -7,7 +7,7 @@ import  {   Input,  Container,  Item,  H1,  Button,
             Header,  Icon,  Spinner,  Card,  CardItem,
             H3, Body
         } from "native-base";
-
+import {} from "react-native-paper";
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -24,7 +24,7 @@ const TopArtistAndTracks = ({route, navigation}) =>
 
     //Promesa
     const getTop = async () =>  {
-        console.log("Asincrona");
+        //console.log("Asincrona");
         try {
             //Consulta a la api
             const response = await backend.get(`me/top/artists?time_range=long_term&limit=50&offset=0`);
@@ -53,7 +53,10 @@ const TopArtistAndTracks = ({route, navigation}) =>
           </View>
         )
       }
-
+      /**
+       * Asi imrprimo un item en JSX
+       * { {console.log(item.images)}
+       */
 
     return(
         <Container style={styles.Contenedor}>
@@ -68,10 +71,10 @@ const TopArtistAndTracks = ({route, navigation}) =>
                         <Card  style={styles.CardContainer} >
                             
                                 <CardItem style={styles.CardItem} cardBody>
-                                    {console.log(item.images)}
-                                   { item.images.map((image)=> (
+                                   
+                                   { item.images.map((image)=> 
                                     <Image key={image.id} source={{uri: image.url}} style={styles.topImage}></Image>
-                                    ))
+                                    )
                                     }
                                 </CardItem>
                            

@@ -11,11 +11,7 @@ const redirectUri = "http://localhost:8888/callback";
  * https://developer.spotify.com/documentation/general/guides/scopes/
  */
 const scopes = [
-  "user-read-currently-playing",
-  "user-read-recently-played",
-  "user-read-playback-state",
-  "user-top-read",
-  "user-modify-playback-state",
+  "user-top-read"
 ];
 
 /**

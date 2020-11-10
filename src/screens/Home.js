@@ -6,10 +6,9 @@ import {ObtenerToken}from "../api/backend";
 const Home = ({route, navigation}) =>
 {
     const { token } = route.params;
-    useEffect(()=>
-    {
+    
       ObtenerToken(token);  
-    });
+   
     
 
     return(

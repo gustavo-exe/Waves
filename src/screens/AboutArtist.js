@@ -34,10 +34,11 @@ const TopArtistAndTracks = ({route, navigation}) =>
  const [artistInformacion, setArtistInformacion] = useState(null);
  const [error, setError] = useState(false);
  const[album, setAlbum]=useState("");
+ const [track, setTrack]=useState("");
 
  const[AnAlbumTracks, setAnAlbumTracks] = useState("");
- const [idAlbum, setIdAlbum] = useState({});
 
+ const [idAlbum, setIdAlbum] = useState("4aawyAB9vmqN3uQ7FjRGTy");
 
  //Promesa para informacion basica del artista
  const getArtistInformacion = async () =>  {
@@ -94,7 +95,7 @@ const getAnAlbumTracks = async () =>  {
  //hook de efecto
  useEffect(() =>
  {
-   
+     getAnAlbumTracks();
      getAnAlbum();
      getArtistInformacion();
  },[]);
@@ -108,24 +109,25 @@ const getAnAlbumTracks = async () =>  {
    }
 
 
+/*Alt + shift + a: para comentar las lineas seleccionadas*/
 
-let track ="";
- function  AlertTrackList(boleano)
+ function  AlertTrackList(idAlbum)
    {
-       if (boleano==true)
-       {
+        console.log(idAlbum);
+/*         setIdAlbum(idAlbum);
         getAnAlbumTracks();
         
-        console.log(AnAlbumTracks);
         
-        AnAlbumTracks.items.forEach((element) => {track = track +`\n${element.name}`});
+        AnAlbumTracks.items.forEach((element) => {setTrack(`\n${element.name}`)});
         
-        Alert.alert("Tracks", `${track}`);
-        track="";
+        
         console.log(track);
-        
-        //Alert.alert("Tracks", `${track}`);
-       }
+        Alert.alert("Tracks", `${track.name}`);
+        console.log(track);
+        setTrack("");
+        setIdAlbum("");
+           */
+       
     }
 
 
@@ -178,7 +180,7 @@ let track ="";
                                          ))
                                          }
                                          </Left>
-                                        <View style={{left:70, width:'60%', height:'100%', bottom:'0%', top:'5%'}} >
+                                        <View  style={{left:70, width:'60%', height:'100%', bottom:'0%', top:'5%'}} >
                                             
                                             <Text note numberOfLines={1} style={{color: '#F4DECB', fontWeight: 'bold' ,width:'95%'}} >
                                                 {item.name}
@@ -188,14 +190,10 @@ let track ="";
                                                 {item.album_group}
 
                                             </Text>
-                                           
-                                        </View> 
-                                        <View style={{left:70,height:80,width:'14%' , top:'10%', bottom:'80%'}} >
-                                            <Button style={{left:'10%',height:'50%',width:'70%' ,top:'20%',bottom:'40%' ,backgroundColor:"rgba(64,62,62,80)"}} onPress={()=> {setIdAlbum({id: item.id}) ; AlertTrackList(true) ;}}>
-                                            
-                                        <Text style={{color:'white', fontWeight: 'bold' }} >{` . . . `}</Text>
-                                            </Button>
-                                        </View>                                          
+                                        </View>
+                                      
+                                        <View style={{ backgroundColor:'blue',left:70,height:80,width:'14%' , top:'10%', bottom:'80%'}} />
+                       
                                     </ListItem>
                                 </List>
                             </Content>
@@ -210,6 +208,15 @@ let track ="";
  );
 };
 
+
+/**
+ *                                            <Button style={{position:'absolute',left:'100%',height:60,width:40 ,top:'60%',bottom:'40%' ,backgroundColor:'blue'}} icon onPress={()=> {AlertTrackList(item.id)}}>
+                                            <Text style={{color:'white', fontWeight: 'bold' }} >{`...`}</Text>
+                                            </Button>
+ */
+
+//style={{flex:0.1 ,left:'5%', right:'5%',height:'10%',width:'10%', position:'relative',top:'100%',bottom:'40%' ,backgroundColor:"rgba(64,62,62,80)"}}
+//setIdAlbum({id: item.id}) ;
 const styles = StyleSheet.create
 (
     {
