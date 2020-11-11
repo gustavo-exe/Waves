@@ -28,7 +28,7 @@ export default function App()
       <Stack.Screen 
 
       options={{
-        title: 'Top artistas',
+        title: 'Top artist',
         headerStyle: 
         {
           backgroundColor: '#49274A',
@@ -44,7 +44,7 @@ export default function App()
 
       <Stack.Screen 
       options={{
-        title: 'Informacion',
+        title: 'Information',
         headerStyle: 
         {
           backgroundColor: '#49274A',

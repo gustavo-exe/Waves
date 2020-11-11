@@ -64,7 +64,7 @@ const TopArtistAndTracks = ({route, navigation}) =>
            <FlatList
              data = {top.items}
              keyExtractor={(item) => item.id}
-             ListEmptyComponent={<Text>No se han encontrado peliculas</Text>}
+             ListEmptyComponent={<Text>No se han encontrado artistas</Text>}
              renderItem={({item})=>{
                 return (
                     <View>
@@ -124,6 +124,7 @@ const styles = StyleSheet.create
         },
         CardItemText:
         {
+            left:'0%',
             height:'30%',
             backgroundColor: 'rgba(64,62,62,80)'
         },
@@ -131,6 +132,7 @@ const styles = StyleSheet.create
 
         Tittle:
         {
+            left:0,
             color: '#F4DECB',
             fontWeight: 'bold'
         },
