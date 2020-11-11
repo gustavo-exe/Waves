@@ -4,7 +4,7 @@ import getEnvVars from "../../enviroment";
 const { apiURL } = getEnvVars();
 import React , {useEffect, useState} from "react";
 
-var AuthToken=['BQAKE5wyhehLWbKk8WfPdmCUrK1TovLICFBY0Q55EyYAfSfk_cRD1CRCmeT4ZdUGXTAfr_8LsmN7MJZaNzXTXuXhwzLYJXkpI9obf-w0lCFx7kl4RdsZXTRFn8IiCeqVm6D-DvIdTnoTcWAh4i4v_XTg4aGf6sYK3X2nQsiUbYVlbWeObW6NDesEFFqByj2EmQoZBZti3tWSUI8a5rTOPNOIUs5z9cmcnPHbtUDHvQhePt2AcxheKwZxKMu-CebfQXqE7L8GyXbTS4Z7lWKogho6b0jESceRWEw'];
+var AuthToken=['BQBeY8M99y1mCioOG1ejqglYCGC1ZswRFMCooSgbzHpmWtUygRtu3DveE1WfU2qtQcDCEzmkyTGio9sDE9jZ8eUFErlsw_eMHfw8gimRAR5Lw7mxM5fJBdTLY8pZiNCSSfWrEOOIEV-XNqqEykFfnvwn2gn7KGAuxlqJBtYR-ULmqhBzjUomXEoWwCfl_PN-ZzvXjb2ivfhTBYubN3yaow1_3MP_47dB0bvp1Gcqmg2bHKfhcCad-5Yv9nqSR5l5TLmw6dtZ_WpUavAN9P_yoMiCekdXacPFGkk'];
 
 export function ObtenerToken(token)
 {
