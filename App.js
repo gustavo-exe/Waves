@@ -26,7 +26,11 @@ export default function App()
       <Stack.Screen name="WaveHome" component={Home} />
 
       <Stack.Screen 
-
+      
+        /*
+         * Estas son las propiedades para la barra de navegacion encabezado
+         */
+      
       options={{
         title: 'Top artist',
         headerStyle: 

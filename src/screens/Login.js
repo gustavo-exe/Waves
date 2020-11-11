@@ -51,6 +51,7 @@ const Login = ({navigation}) => {
   return (
    <>
         <View style={styles.TituloDeIntrucciones}>
+        <Input placeholder="Link" value={token} onChangeText={setToken} ></Input>
         <Text>Intrucciones</Text>
         </View> 
 
@@ -64,7 +65,7 @@ const Login = ({navigation}) => {
 
         <View style={styles.IntereaccionDeIntruscciones}>
         <Button title="Open WebBrowser" onPress={_handlePressButtonAsync} />
-        <Input placeholder="Link" value={token} onChangeText={setToken} ></Input>
+        
         
         <Button title="Cambiar" onPress={ () => navigation.navigate('WaveHome',{token})} />
         </View>
