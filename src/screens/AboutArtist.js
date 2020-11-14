@@ -51,8 +51,7 @@ const TopArtistAndTracks = ({route, navigation}) =>
          const response = await backend.get(`artists?ids=${id}`);
 
          setArtistInformation(response.data);
-         console.log(artistInformation.artists.id);
-         
+    
      } catch (error) {
 
          setError(true);
@@ -115,23 +114,17 @@ function  AlertTrackList(idAlbumList)
      
      if (!anAlbumTracks)
      {
-         
-         
-            Alert.alert("cargando datos");
-            
-          
-         
-         
+        Alert.alert("cargando datos");
      }else{
 
-         //console.log(AnAlbumTracks);
+        //console.log(AnAlbumTracks);
          
-         anAlbumTracks.items.forEach((element) => {track.push(`\n${element.name}`);});
-         console.log(track);
+        anAlbumTracks.items.forEach((element) => {track.push(`\n${element.name}`);});
+        console.log(track);
          
-         setIdAlbum(" ");
-         Alert.alert("Tracks", `${track}`);
-         setTrack(track.length = 0);
+        setIdAlbum(" ");
+        Alert.alert("Tracks", `${track}`);
+        setTrack(track.length = 0);
         
      }
     
@@ -146,7 +139,7 @@ function  AlertTrackList(idAlbumList)
    }
 
  return(
-<Container style={{ backgroundColor:'#49274A', flex:1}} >
+<Container style={styles.container} >
         <View>
          <FlatList
           data = {artistInformation.artists}
@@ -154,65 +147,66 @@ function  AlertTrackList(idAlbumList)
           ListEmptyComponent={<Text>No se han encontrado peliculas</Text>}
           renderItem={({item})=>{
              return (
-                 <Container style={{backgroundColor:'#49274A',height:height * 0.40 }} >
+            <Container style={styles.backgroundInformation} >
 
-                 <View style={{flex:0.4 ,backgroundColor:'#49274A',flexDirection:"row"}}>
+                 <View style={styles.viewImage}>
                                 { 
                                     item.images.map((image)=> (
                                     <Image key={image.id} source={{uri: image.url}} style={ styles.topImage}></Image>
                                     ))
                                  }
                 </View>
-                <View style={{position:'absolute', alignItems:'center' ,width:width*0.98 , top:'67%' }} >
-                <Text style={{  fontSize:30,textShadowOffset:{width:0 ,height:3}, elevation:0, textShadowColor:'#000000',textShadowRadius:7, shadowOpacity:1.0  ,color:"#F4DECB"}} >
-                    {item.name}
-                    </Text>
-                <Text style={{ bottom:'6%', fontSize:12,textShadowOffset:{width:0 ,height:1}, elevation:0, textShadowColor:'#000000',textShadowRadius:4, shadowOpacity:1.0  ,color:"#F4DECB"}}  >
-                    Followers {item.followers.total}
-                </Text>
 
+                <View style={styles.viewItemsText}>
+                    <Text style={styles.itemName}>
+                        {item.name}
+                        </Text>
+                    <Text style={styles.itemFollowers}>
+                        Followers {item.followers.total}
+                    </Text>
                 </View>
 
-                <Container  style={{position:'absolute', width:'50%',height:'40%',backgroundColor:'transparent' ,left:'4%'}} >
+                <Container style={styles.containerGenres} >
                         
-                        <ScrollView  >
+                        <ScrollView>
                         {
                             item.genres.map((genre)=>(
-                            <Text style={{color:'#F8EEE7', textTransform:"capitalize" ,textAlign:"left", textShadowOffset:{width:0 ,height:1}, elevation:0, textShadowColor:'#000000',textShadowRadius:7, shadowOpacity:1.0}} >{genre}</Text>
+                            <Text style={styles.textGenres} >{genre}</Text>
                             ))
                         }
                         </ScrollView>
-                    </Container>
+                </Container>
 
-             </Container>
+            </Container>
              )
          }}
          />
     </View>
     
-    <Container style={{top:height*0.35,position:'absolute', width:width ,backgroundColor:'#49274A' ,borderTopRightRadius:30 ,borderTopLeftRadius:30}} >
-         <FlatList style={{top:'2%'}}
+    <Container style={styles.containerAlbum} >
+         <FlatList style={styles.flatListAlbum}
             data={album.items}
             keyExtractor={(item)=>item.id}
             ListEmptyComponent={<Spinner color="black" />}
             renderItem={({item})=>{
                 return (
-                    <Container style={{ marginLeft:'5%', marginRight:'5%' ,backgroundColor:'#49274A' ,height:'10%'}} >
+                    <Container style={styles.containerListAlbum} >
                         
                         <Content >
                             <List  >
-                                <ListItem thumbnail style={{width:"100%", height:'45%'}}>
+                                <ListItem thumbnail style={styles.listItem}>
                                     <Left>
                                     { 
                                     item.images.map((image)=> (
                                          
-                                    <Thumbnail key={image.id} square source={{uri: image.url}  } style={{ position:"absolute", top:'100%' ,bottom:'5%' }} />
+                                    <Thumbnail key={image.id} square source={{uri: image.url} } style={styles.imageAlbum} />
                                      ))
                                      }
                                      </Left>
-                                    <View style={{left:70, width:'60%', height:'100%', bottom:'0%', top:'5%'}} >
+
+                                    <View style={styles.bodyOfList} >
                                         
-                                        <Text note numberOfLines={1} style={{color: '#F4DECB', fontWeight: 'bold' ,width:'95%'}} >
+                                        <Text note numberOfLines={1} style={styles.nameOfAlbum} >
                                             {item.name}
                                         </Text>
 
@@ -222,9 +216,9 @@ function  AlertTrackList(idAlbumList)
                                         </Text>
                                        
                                     </View> 
-                                    <View style={{left:'900%',height:80,width:'14%', top:'10%', bottom:'80%'}}>
-                                        <Button style={{left:'3%',width:'90%', borderBottomWidth:0,shadowOffset: {height: 0, width: 0}, shadowOpacity: 0, elevation: 0  ,backgroundColor:'#49274A'}} onPress={()=> {AlertTrackList({id: item.id}) ;}}>
-                                            <Text style={{color:'white', fontWeight: 'bold' }} > . . .</Text>
+                                    <View style={styles.viewOfBottomAlert}>
+                                        <Button style={styles.bottomAlert} onPress={()=> {AlertTrackList({id: item.id}) ;}}>
+                                            <Text style={styles.textBottomAlert} > . . .</Text>
                                         </Button>
                                     </View>
                                 </ListItem>
@@ -243,25 +237,74 @@ function  AlertTrackList(idAlbumList)
  );
 };
 
-//style={{left:'10%',height:'50%',width:'70%' ,top:'20%',bottom:'40%' ,backgroundColor:"rgba(64,62,62,80)"}} onPress={()=> {setIdAlbum({id: item.id}) ; AlertTrackList(true) ;}}
-/**
- *                                            <Button style={{position:'absolute',left:'100%',height:60,width:40 ,top:'60%',bottom:'40%' ,backgroundColor:'blue'}} icon onPress={()=> {AlertTrackList(item.id)}}>
-                                            <Text style={{color:'white', fontWeight: 'bold' }} >{`...`}</Text>
-                                            </Button>
- */
 
-//style={{flex:0.1 ,left:'5%', right:'5%',height:'10%',width:'10%', position:'relative',top:'100%',bottom:'40%' ,backgroundColor:"rgba(64,62,62,80)"}}
-//setIdAlbum({id: item.id}) ;
+
 const styles = StyleSheet.create
 (
     {
-        CardItem:
+        container:
         {
-            left:15,
-            width: width *0.91,
-            height: height * 0.5
+            backgroundColor:'#49274A',
+             flex:1
         },
-
+        backgroundInformation:
+        {
+            backgroundColor:'#49274A',
+            height:height * 0.40 
+        },
+        viewImage:
+        {
+            flex:0.4 ,
+            backgroundColor:'#49274A',
+            flexDirection:"row"
+        },
+        viewItemsText:
+        {
+            position:'absolute', 
+            alignItems:'center',
+            width:width*0.98, 
+            top:'67%'
+        },
+        itemName:
+        {
+            fontSize:30,
+            textShadowOffset:{width:0 ,height:3}, 
+            elevation:0, 
+            textShadowColor:'#000000',
+            textShadowRadius:7, 
+            shadowOpacity:1.0  ,
+            color:"#F4DECB"
+        },
+        itemFollowers:
+        {
+            bottom:'6%', 
+            fontSize:12,
+            textShadowOffset:{width:0 ,height:1}, 
+            elevation:0, 
+            textShadowColor:'#000000',
+            textShadowRadius:4, 
+            shadowOpacity:1.0  ,
+            color:"#F4DECB"
+        },
+        containerGenres:
+        {
+            position:'absolute', 
+            width:'50%',
+            height:'40%',
+            backgroundColor:'transparent' ,
+            left:'4%'
+        },
+        textGenres:
+        {
+            color:'#F8EEE7', 
+            textTransform:"capitalize",
+            textAlign:"left", 
+            textShadowOffset:{width:0 ,height:1}, 
+            elevation:0, 
+            textShadowColor:'#000000',
+            textShadowRadius:7, 
+            shadowOpacity:1.0
+        },
         topImage:
         {
            
@@ -270,33 +313,87 @@ const styles = StyleSheet.create
             height: height * 0.40,
             top:'0%',
             left:'0%'
+        },
+
+
+        containerAlbum:
+        {
+            top:height*0.35,
+            position:'absolute', 
+            width:width ,
+            backgroundColor:'#49274A',
+            borderTopRightRadius:30,
+            borderTopLeftRadius:30
+        },
+        flatListAlbum:
+        {
+            top:'2%'
+        },
+        containerListAlbum:
+        {
+            marginLeft:'5%', 
+            marginRight:'5%',
+            backgroundColor:'#49274A',
+            height:'10%'
+        },
+        listItem:
+        {
+            width:"100%", 
+            height:'45%'
+        },
+
+        imageAlbum:
+        {
+            position:"absolute", 
+            top:'100%',
+            bottom:'5%' 
+        },
+
+        bodyOfList:
+        {
+            left:70, 
+            width:'60%', 
+            height:'100%', 
+            bottom:'0%', 
+            top:'5%'
+        },
+
+        nameOfAlbum:
+        {
+            color: '#F4DECB', 
+            fontWeight: 'bold' ,
+            width:'95%'
+        },
+        viewOfBottomAlert:
+        {
+            left:'900%',
+            height:80,
+            width:'14%', 
+            top:'10%', 
+            bottom:'80%'
+        },
+        bottomAlert:
+        {
+            left:'3%',
+            width:'90%', 
+            borderBottomWidth:0,
+            shadowOffset: {height: 0, width: 0}, 
+            shadowOpacity: 0, 
+            elevation: 0  ,
+            backgroundColor:'#49274A'
+        },
+        textBottomAlert:
+        {
+            color:'white', 
+            fontWeight: 'bold' 
+        },
+        CardItem:
+        {
+            left:15,
+            width: width *0.91,
+            height: height * 0.5
         }
     }
 );
 
 export default TopArtistAndTracks;
-
-/**
- * 
- *  <View style={{ height:'70%',width:'50%' ,left:'24%' ,top:'2%' ,backgroundColor:"#F4DECB",flexDirection:"row"}}>
-
-
-                 <Text style={{fontSize:10, top:'80%',right:'309%'}}>Followers</Text>
-                                <Text style={{  right:'350%', top:'77%'}}>
-                                {"\n"} {item.followers.total}
-                                </Text>
-                                 
-                 </View>
- */
-
- /**
-  *  <View style={{  backgroundColor:"rgba(64,62,62,100)",position:"absolute", width:'45%' ,height:'90%', left:'5%',top:'3.7%'}} >
-
-                    <H1 style={{  color:"#F4DECB",left:'1%',top:'1%',height:'50%',width:"95%"}} >
-                    {item.name}
-                    </H1>
-                    
-             
-                </View>
-
-  */

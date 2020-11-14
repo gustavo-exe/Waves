@@ -1,7 +1,7 @@
 import React from 'react';
 import Login from "./src/screens/Login";
 import Home from "./src/screens/Home";
-import Top from "./src/screens/TopArtistAndTracks";
+import Top from "./src/screens/TopArtist";
 import About from "./src/screens/AboutArtist"
 import SearchArtist from "./src/screens/ArtistSearchResult";
 
