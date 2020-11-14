@@ -61,6 +61,20 @@ export default function App()
         },
       }}
       name="WaveAbout" component={About}/>
+
+      <Stack.Screen
+      options={{
+        title: 'Most listened',
+        headerStyle:{
+          backgroundColor: '#49274A',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle:{
+          textAlign:'right',
+          fontWeight: 'bold',
+        },
+      }}
+      name="MostListened" component={Home}/>
     </Stack.Navigator>
   </NavigationContainer>
   ) 

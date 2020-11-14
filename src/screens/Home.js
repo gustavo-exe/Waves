@@ -68,9 +68,12 @@ const Home = ({route, navigation}) =>
                 <Entypo style={styles.out} name="log-out" size={39} color="black"/>
             </View>
             
-            <H1 style={styles.title}> Hi </H1>
-            <H1 style={styles.title}> gustavo.exe </H1>
-            <Text style={styles.text}>most listened artists</Text>
+            <View style={styles.datos}>
+                <H1 style={styles.title}> Hi </H1>
+                <H1 style={styles.title}> gustavo.exe </H1>
+                <Text style={styles.text}>most listened artists</Text>
+            </View>
+            
 
             <FlatList
                 data = {artist.items}
@@ -88,16 +91,20 @@ const Home = ({route, navigation}) =>
                                         ))
                                         //<Text>{item.name}</Text>
                                         }   
+                                        
                                     </Body>
                                 </CardItem>
                             </Card>
+                            
                         </View>
                     )
                     
                 }}
             />
-
-            <Button title="Cambiar" onPress={ () => navigation.navigate('WaveTop',{token})} />
+            <View>
+                <Button title="Top artists" onPress={ () => navigation.navigate('WaveTop',{token})} />
+            </View>
+            
         </Container>
         /*<Content>
             <H1> Este es mi token: {token} </H1>
@@ -112,6 +119,11 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
+
+    datos:{
+        flex: 0.6,
+    },
+
     header: {
         flexDirection: 'row',
         height: 60,
