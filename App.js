@@ -3,6 +3,7 @@ import Login from "./src/screens/Login";
 import Home from "./src/screens/Home";
 import Top from "./src/screens/TopArtistAndTracks";
 import About from "./src/screens/AboutArtist"
+import SearchArtist from "./src/screens/ArtistSearchResult";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -35,6 +36,7 @@ export default function App()
         title: 'Top artist',
         headerStyle: 
         {
+          elevation:0,
           backgroundColor: '#49274A',
         },
         headerTintColor: '#fff',
@@ -51,6 +53,7 @@ export default function App()
         title: 'Information',
         headerStyle: 
         {
+          elevation:0,
           backgroundColor: '#49274A',
         },
         headerTintColor: '#fff',
@@ -61,6 +64,23 @@ export default function App()
         },
       }}
       name="WaveAbout" component={About}/>
+
+      <Stack.Screen 
+      options={{
+        title: 'Search artist',
+        headerStyle: 
+        {
+          elevation:0,
+          backgroundColor: '#49274A',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: 
+        {
+          textAlign:'right',
+          fontWeight: 'bold',
+        },
+      }}
+      name="SearchArtist" component={SearchArtist} />
     </Stack.Navigator>
   </NavigationContainer>
   ) 
