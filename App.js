@@ -4,6 +4,7 @@ import Home from "./src/screens/Home";
 import Top from "./src/screens/TopArtist";
 import About from "./src/screens/AboutArtist"
 import SearchArtist from "./src/screens/ArtistSearchResult";
+import Collage from "./src/screens/Collage";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -25,6 +26,22 @@ export default function App()
       <Stack.Navigator initialRouteName="movieList">
       <Stack.Screen name="WaveLogin" component={Login} />
       <Stack.Screen name="WaveHome" component={Home} />
+      <Stack.Screen 
+       options={{
+        title: 'Tracks',
+        headerStyle: 
+        {
+          elevation:0,
+          backgroundColor: '#49274A',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: 
+        {
+          textAlign:'right',
+          fontWeight: 'bold',
+        },
+      }}
+      name="WaveCollage" component={Collage} />
 
       <Stack.Screen 
       
@@ -82,6 +99,8 @@ export default function App()
       }}
       name="SearchArtist" component={SearchArtist} />
     </Stack.Navigator>
+
+
   </NavigationContainer>
   ) 
   //<Login></Login>;

@@ -8,21 +8,6 @@ import  {   Input,  Container,  Item,  H1,  Button,
 import backend from "../api/backend";
 import { ScrollView } from "react-native-gesture-handler";
 
-/**
- *                                <CardItem cardBody>
-                                    {console.log(item.images)}
-                                   { item.images.map((image)=> (
-                                    <Image key={image.id} source={{uri: image.url}} style={styles.topImage}></Image>
-                                    ))
-                                    }
-                               </CardItem>
-                            
-                                <Body>
-                                    
-                                </Body>
- */
-
-
 // Valores del destructing
 const {width, height} = Dimensions.get("window");
 

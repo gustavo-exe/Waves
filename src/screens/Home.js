@@ -15,7 +15,9 @@ const Home = ({route, navigation}) =>
         <Content>
             <H1> Este es mi token: {token} </H1>
             <Button title="Cambiar" onPress={ () => navigation.navigate('WaveTop',{token})} />
+            <Button title="collage" onPress={()=> navigation.navigate('WaveCollage',{})} />
         </Content>
+        
         
     )
 }
