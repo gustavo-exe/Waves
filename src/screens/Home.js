@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {ObtenerToken}from "../api/backend";
-import { Content,H1, H3, Input, Container, Left, Spinner, Item, Card, CardItem, Body, header, Button, Icon} from "native-base";
-import { StyleSheet, Image, Text, Dimensions, FlatList, View} from 'react-native';
+import { Content,H1, H3, Input, Container, Left, Spinner, Item, Card, CardItem, Body, header,Icon} from "native-base";
+import { StyleSheet, Image, Text, Dimensions,Button ,FlatList, View} from 'react-native';
 //import { Entypo } from '@expo/vector-icons';
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
@@ -21,8 +21,9 @@ const Home = ({route, navigation}) =>
     const getArtist = async () =>{
         try {
             const response = await backend.get(`me/top/artists?time_range=long_term&limit=1&offset=0`);
-            //console.log(response.data);
+            
             setArtist(response.data);
+            console.log(artist.data);
         } catch (error) {
             setError(true);
             //console.log(error);
@@ -46,7 +47,7 @@ const Home = ({route, navigation}) =>
         getUser();
     }, []);
 
-    if (!artist && !user){
+    if (!artist){
         return(
             <View style={{flex: 1, justifyContent: "center"}}>
                 <Spinner color="blue"/>
@@ -75,24 +76,18 @@ const Home = ({route, navigation}) =>
 
     //const { token } = route.params;
     return(
-        <Container style={{flex:1}}>
+        <Container style={{flex:1, backgroundColor: '#F4DECB'}}>
+            <Image source={require("../../assets/Degradado.png")} style={{ zIndex: 0, width: width, height: height * 0.5} }>
+            </Image>
             
-            <View style={{ flex:0.3 ,backgroundColor:'orange'}} >           
-                <View style={styles.boton}>
+            <View style={{position:'absolute' ,flex:0.8, width:width ,backgroundColor:'orange' }} >           
                     <Button title="Top artists" onPress={ () => navigation.navigate('WaveTop',{token})} />
-                </View>
+ 			        <Text style={{position:'relative'}} > {user.display_name} </Text>
+            		<Text> most listened artists</Text>
             </View>
 
-               
-               
-                 <Text> {user.display_name} </Text>
-         
-
-          
-
-            <Text > most listened artists</Text>
-            <View  style={{flex:1,backgroundColor:'green'}}>
-                <FlatList
+            <View  style={{position: "absolute" ,top: height*0.18 ,backgroundColor:'green'}}>
+            <FlatList
                     data = {artist.items}
                     keyExtractor={(item) => item.id}
                     ListEmptyComponent={<Text>No se han encontrado artistas</Text>}
@@ -117,13 +112,15 @@ const Home = ({route, navigation}) =>
                 />
             </View>
             
-            <View  style={{backgroundColor:'red', flex:0.6}} >
-                 <Text>
-                        Y O L O
-                </Text>
+            <View  style={{backgroundColor:'red', flex:0.6, position: "absolute", width: width, top: height * 0.75 }} >
+                <Button  title="Top artists" onPress={ () => navigation.navigate('WaveTop',{})} />
+                
             </View>
+
+
             
             
+        
         </Container>
         /*<Content>
             <H1> Este es mi token: {token} </H1>
