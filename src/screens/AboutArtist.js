@@ -147,7 +147,7 @@ function  AlertTrackList(idAlbumList)
                         {item.name}
                         </Text>
                     <Text style={styles.itemFollowers}>
-                        Followers {item.followers.total}
+                        Followers  {item.followers.total}
                     </Text>
                 </View>
 
@@ -195,7 +195,7 @@ function  AlertTrackList(idAlbumList)
                                             {item.name}
                                         </Text>
 
-                                        <Text note numberOfLines={1}>
+                                        <Text note numberOfLines={1} style={styles.albumGroup} >
                                             {item.album_group}
 
                                         </Text>
@@ -236,6 +236,10 @@ const styles = StyleSheet.create
         {
             backgroundColor:'#49274A',
             height:height * 0.40 
+        },
+        albumGroup:
+        {
+            textTransform:'capitalize'
         },
         viewImage:
         {
@@ -312,7 +316,8 @@ const styles = StyleSheet.create
         },
         flatListAlbum:
         {
-            top:'2%'
+            marginTop:'1%',
+            marginBottom:'82%'
         },
         containerListAlbum:
         {
@@ -338,7 +343,7 @@ const styles = StyleSheet.create
         {
             left:70, 
             width:'60%', 
-            height:'100%', 
+            height:'90%', 
             bottom:'0%', 
             top:'5%'
         },

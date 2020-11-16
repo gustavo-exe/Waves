@@ -50,7 +50,7 @@ export default function App()
          */
       
       options={{
-        title: 'Top artist',
+        title: 'Top artists',
         headerStyle: 
         {
           elevation:0,
@@ -84,7 +84,7 @@ export default function App()
 
       <Stack.Screen 
       options={{
-        title: 'Search artist',
+        title: 'Artist results',
         headerStyle: 
         {
           elevation:0,

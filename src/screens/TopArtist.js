@@ -74,7 +74,7 @@ const TopArtist = ({route, navigation}) =>
     <Container style={{backgroundColor:'#49274A', flex:1}}>
            
            <Container style={{flex:0.1, backgroundColor: '#49274A'}} >
-            <View style={{ top:'9%',left:'8%' ,width:'80%'  ,backgroundColor: '#49274A'}} searchBar rounded>
+            <View style={{ top:'9%',left:'8%' ,width:'82%'  ,backgroundColor: '#49274A'}} >
             <Item>
                 <Input  
                     value={search}
@@ -91,8 +91,8 @@ const TopArtist = ({route, navigation}) =>
             </View>
         </Container>
 
-        <Container style={{borderRadius:20 ,backgroundColor: '#F4DECB', top:'5%'}}>
-           <FlatList
+        <View style={{borderRadius:20, flex:0.9 ,position:'relative',backgroundColor: '#F4DECB', top:'5%'}}>
+           <FlatList style={styles.flatList}
              data = {top.items}
              keyExtractor={(item) => item.id}
              ListEmptyComponent={<Text>I'cant found artists. </Text>}
@@ -133,7 +133,7 @@ const TopArtist = ({route, navigation}) =>
                 )
             }}
             /> 
-        </Container>
+        </View>
     </Container>
         
     );
@@ -148,7 +148,7 @@ const styles = StyleSheet.create
         },
         textInputSearch:
         {
-            left: ' 3%',
+            
             color: 'white'
         },
         Contenedor:
@@ -204,7 +204,14 @@ const styles = StyleSheet.create
             width:width *0.81 ,
             height: height * 0.3,
             margin: 20
+        },
+        flatList:
+        {
+            marginBottom:'12%', 
+            marginTop:'0%'
         }
+
+
     }
 );
 

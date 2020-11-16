@@ -71,24 +71,19 @@ const Collage = ({route, navigation}) =>
 
     return(     
 
-        <Container style={{flex:1, backgroundColor:'#49274A'}} >
-            <View style={{flex:0.1, alignItems:'center'}} >
-                <Text   style={{ top:'25%',
-            color:'#F4DECB',
-            fontSize:25}} >Me top tracks last 6 months </Text>
-            </View>
-
-            <Container style={{flex:1,left:0 , alignItems:"center",backgroundColor:'#F4DECB',borderRadius:20 ,margin:'0%'}} >
+        <Container style={{flex:1 ,backgroundColor:'#49274A'}} >
             
-            <View style={{marginLeft:'8.7%',marginRight:'8.7%', top:'2%',alignSelf:'stretch',flex:2}} >
-                <Text style={{textAlign:'right'}} >
-                    Source Spotify
+            <View style={{ justifyContent:'center',marginLeft:'8.7%',marginRight:'8.7%',top:'0%',alignSelf:'stretch',flex:0.2}} >
+                <Text style={{top:'15%', color:'#F4DECB'}} >
+                User's Top
                 </Text>
-                <Text style={{fontSize:29, textAlign:'right'}} >
-                    Do it with Waves
+                <Text style={{fontSize:45, color:'#F4DECB'}} >
+                    Tracks
                 </Text>
             </View>
            
+
+            <Container style={{flex:1,left:0 ,alignItems:"center",backgroundColor:'#49274A',borderRadius:20 ,margin:'0%'}} >
             <FlatList
                 numColumns={3}
 
@@ -111,15 +106,12 @@ const Collage = ({route, navigation}) =>
                             }
 
                             <Text numberOfLines={1} style={{ color:'#F8EEE7' ,textShadowOffset:{width:0 ,height:1}, 
-            elevation:0, 
-            textShadowColor:'#000000',
-            textShadowRadius:3, 
-            shadowOpacity:5 ,bottom:'3%' ,margin:'0%' ,width:'100%' ,left:'4%' ,fontSize:10 ,position:'absolute'}} >{item.name}</Text>
+                                elevation:0, 
+                                textShadowColor:'#000000',
+                                textShadowRadius:3, 
+                                shadowOpacity:5 ,bottom:'3%' ,margin:'0%' ,width:'100%' ,left:'4%' ,fontSize:10 ,position:'absolute'}} >{item.name}</Text>
                             </View>
 
-                            <View>
-                            
-                            </View>
                         </View>
                     
                     
@@ -128,6 +120,12 @@ const Collage = ({route, navigation}) =>
             }}
         />
          </Container>
+            <View style={{alignItems:'center' ,justifyContent:'flex-start',marginLeft:'8.7%',marginRight:'8.7%',alignSelf:'stretch',flex:0.1}} >
+            <Text style={{ color: 'rgba(248,238,231,0.3)' }} >
+                    Source Spotify Api do it with Waves
+                </Text>
+            </View>
+
         </Container>
         
     );

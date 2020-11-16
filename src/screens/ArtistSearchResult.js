@@ -39,8 +39,6 @@ const ArtistSearchResult = ({route, navigation}) =>
             console.log(error);
         }
     }
-    
-      // Verifica si el usuario ingresa información en el input de búsqueda
 
     //hook de efecto
     useEffect(() =>
@@ -65,20 +63,19 @@ const ArtistSearchResult = ({route, navigation}) =>
     return(
     <Container style={{backgroundColor:'#49274A', flex:1}}>
            
-           <Container style={{flex:0.1, backgroundColor: '#49274A'}} >
-           <View style={{  top:'9%',left:'8%' ,width:'80%' ,backgroundColor: '#49274A'}} searchBar rounded>
-            
-                
-                <Text style={styles.resultsOf} >Results of: {search} </Text>
-            
-            </View>
-           </Container>
+          
+           <View style={{alignItems:'center',top:'1%' ,justifyContent:'center',alignSelf:'stretch',flex:0.1 ,width:width ,backgroundColor: '#49274A'}}>
 
-        <Container style={{borderRadius:20 ,backgroundColor: '#F4DECB', top:'5%'}}>
-           <FlatList
+                <Text style={{fontSize:10, color:'#F4DECB'}} >Search</Text>
+                <Text style={{fontSize:30, color:'#F4DECB'}} > {search}  </Text>
+            </View>
+          
+
+        <Container style={{borderRadius:20,backgroundColor: '#F4DECB', top:'5%'}}>
+           <FlatList style={styles.flatList}
              data = {artist.items}
              keyExtractor={(item) => item.id}
-             ListEmptyComponent={<Text>No se han encontrado artistas</Text>}
+             ListEmptyComponent={ <Text style={{fontSize:30 ,color:'red'}}> Can't find elements  </Text>}
              renderItem={({item})=>{
                 return (
                     
@@ -195,6 +192,12 @@ const styles = StyleSheet.create
             width:width *0.81 ,
             height: height * 0.3,
             margin: 20
+        },
+        
+        flatList:
+        {
+            marginBottom:'12%', 
+            marginTop:'0%'
         }
     }
 );
