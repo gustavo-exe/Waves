@@ -15,12 +15,13 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 // Valores del destructing
 const {width, height} = Dimensions.get("window");
 
-const TopArtistAndTracks = ({route, navigation}) =>
+const TopArtist = ({route, navigation}) =>
 {
     //Estado del TOP
     const [top, setTop] = useState(null);
     const [error, setError] = useState(false);
-    const [itemId, setItemId] = useState(null);
+    //const [itemId, setItemId] = useState(null);
+    const [search, setSearch] = useState("");
 
     //Promesa
     const getTop = async () =>  {
@@ -40,12 +41,23 @@ const TopArtistAndTracks = ({route, navigation}) =>
         }
     }
     
+
+  const handlerSearch = () => {
+    if (!search) setSearchError(true);
+    else {
+      navigation.navigate('SearchArtist',{search});
+      setSearch(" ");
+    }
+  };
+
     //hook de efecto
     useEffect(() =>
     {
         getTop();
     },[]);
 
+
+//Comrpbamos que este lleno de contenido
     if (!top) {
         return (
           <View style={{flex: 1, justifyContent: "center"}}>
@@ -59,51 +71,70 @@ const TopArtistAndTracks = ({route, navigation}) =>
        */
 
     return(
-        <Container style={styles.Contenedor}>
+    <Container style={{backgroundColor:'#49274A', flex:1}}>
            
-           <FlatList
+           <Container style={{flex:0.1, backgroundColor: '#49274A'}} >
+            <View style={{ top:'9%',left:'8%' ,width:'82%'  ,backgroundColor: '#49274A'}} >
+            <Item>
+                <Input  
+                    value={search}
+                    onChangeText={setSearch} 
+                    style={styles.textInputSearch} 
+                    placeholderTextColor="#F4DECB" 
+                    placeholder="Search" 
+                />
+
+                <Button icon onPress={handlerSearch} style={styles.colorIconSearch} transparent>
+                <Icon style={{color:"#F4DECB"}}  name="ios-search" />
+                </Button>
+            </Item>
+            </View>
+        </Container>
+
+        <View style={{borderRadius:20, flex:0.9 ,position:'relative',backgroundColor: '#F4DECB', top:'5%'}}>
+           <FlatList style={styles.flatList}
              data = {top.items}
              keyExtractor={(item) => item.id}
-             ListEmptyComponent={<Text>No se han encontrado artistas</Text>}
+             ListEmptyComponent={<Text>I'cant found artists. </Text>}
              renderItem={({item})=>{
                 return (
                     <View>
                         <Card  style={styles.CardContainer} >
                             
                                 <CardItem style={styles.CardItem} cardBody>
-                                   
-                                   { item.images.map((image)=> 
+                                { 
+                                    item.images.map((image)=> 
                                     <Image key={image.id} source={{uri: image.url}} style={styles.topImage}></Image>
                                     )
-                                    }
+                                }
                                 </CardItem>
                            
                             <CardItem style={styles.CardItemText}  >
                                 <Body>
+
                                     <H3 style={styles.Tittle}>
                                         {item.name}
                                     </H3>
+                                    
                                     <Text style={styles.Porcentaje}>
-                                        {item.popularity} %
+                                        {item.popularity}%
                                     </Text>
 
                                    < CardItem style={styles.ButtonCardItem} button onPress={ () => navigation.navigate('WaveAbout',{id: item.id})}>
-                                        <Text style={{ color: '#94618e',right:17}} > 
-                                            Mas..
+                                        <Text style={{ color: '#94618e',left:'-100%'}} > 
+                                            More...
                                         </Text>
                                     </CardItem>
 
                                 </Body>
                             </CardItem>
-
-                            
                         </Card>
                     </View>
                 )
             }}
             /> 
-
-        </Container>
+        </View>
+    </Container>
         
     );
 };
@@ -111,6 +142,15 @@ const TopArtistAndTracks = ({route, navigation}) =>
 const styles = StyleSheet.create
 (
     {
+        colorIconSearch:
+        {
+            color:"white"
+        },
+        textInputSearch:
+        {
+            
+            color: 'white'
+        },
         Contenedor:
         {
             
@@ -164,8 +204,15 @@ const styles = StyleSheet.create
             width:width *0.81 ,
             height: height * 0.3,
             margin: 20
+        },
+        flatList:
+        {
+            marginBottom:'12%', 
+            marginTop:'0%'
         }
+
+
     }
 );
 
-export default TopArtistAndTracks;
+export default TopArtist;

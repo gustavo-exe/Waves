@@ -8,21 +8,6 @@ import  {   Input,  Container,  Item,  H1,  Button,
 import backend from "../api/backend";
 import { ScrollView } from "react-native-gesture-handler";
 
-/**
- *                                <CardItem cardBody>
-                                    {console.log(item.images)}
-                                   { item.images.map((image)=> (
-                                    <Image key={image.id} source={{uri: image.url}} style={styles.topImage}></Image>
-                                    ))
-                                    }
-                               </CardItem>
-                            
-                                <Body>
-                                    
-                                </Body>
- */
-
-
 // Valores del destructing
 const {width, height} = Dimensions.get("window");
 
@@ -32,25 +17,26 @@ const TopArtistAndTracks = ({route, navigation}) =>
     
 
  //Estados
- const [artistInformacion, setArtistInformacion] = useState(null);
+ const [artistInformation, setArtistInformation] = useState(null);
  const [error, setError] = useState(false);
- const[album, setAlbum]=useState("");
- const [track, setTrack]=useState("");
+ const  [album, setAlbum]=useState("");
+ const [track, setTrack]=useState([]);
 
- const[AnAlbumTracks, setAnAlbumTracks] = useState("");
+ const[anAlbumTracks, setAnAlbumTracks] = useState("");
 
  const [idAlbum, setIdAlbum] = useState("");
 
+ // Get Several Artists
+ //https://developer.spotify.com/documentation/web-api/reference/artists/get-several-artists/
+
  //Promesa para informacion basica del artista
- const getArtistInformacion = async () =>  {
+ const GetArtistInformation = async () =>  {
      try {
          //Consulta a la api
          const response = await backend.get(`artists?ids=${id}`);
-         
-         
-         
-         setArtistInformacion(response.data);
-         
+
+         setArtistInformation(response.data);
+    
      } catch (error) {
 
          setError(true);
@@ -63,9 +49,7 @@ const TopArtistAndTracks = ({route, navigation}) =>
     try {
         //Consulta a la api
         const response = await backend.get(`artists/${id}/albums?include_groups=single%2Calbum&market=ES&limit=50&offset=0`);
-        
-        
-        
+
         setAlbum(response.data);
         
     } catch (error) {
@@ -98,10 +82,40 @@ const getAnAlbumTracks = async () =>  {
  {
      
      getAnAlbum();
-     getArtistInformacion();
+     GetArtistInformation();
  },[]);
 
- if (!artistInformacion) {
+/*Alt + shift + a: para comentar las lineas seleccionadas*/
+
+function  AlertTrackList(idAlbumList)
+{
+     console.log(idAlbumList);
+     setIdAlbum(idAlbumList) ;
+     
+     
+     getAnAlbumTracks();
+     
+
+     
+     if (!anAlbumTracks)
+     {
+        Alert.alert("cargando datos");
+     }else{
+
+        //console.log(AnAlbumTracks);
+         
+        anAlbumTracks.items.forEach((element) => {track.push(`\n${element.name}`);});
+        console.log(track);
+         
+        setIdAlbum(" ");
+        Alert.alert("Tracks", `${track}`);
+        setTrack(track.length = 0);
+        
+     }
+    
+ }
+
+ if (!artistInformation) {
      return (
        <View style={{flex: 1, justifyContent: "center"}}>
          <Spinner color="black" />
@@ -109,130 +123,89 @@ const getAnAlbumTracks = async () =>  {
      )
    }
 
-
-/*Alt + shift + a: para comentar las lineas seleccionadas*/
-
- function  AlertTrackList(idAlbumList)
-   {
-        setIdAlbum("");
-        console.log(idAlbumList);
-        setIdAlbum(idAlbumList) ;
-        
-        
-        getAnAlbumTracks();
-        
-        let track ="";
-        
-        if (!AnAlbumTracks)
-        {
-            return(
-            <View style={{flex: 1, justifyContent: "center"}}>
-                <Spinner color="black" />
-            </View>
-            )
-        }else{
-
-            //console.log(AnAlbumTracks);
-            setIdAlbum("");
-            AnAlbumTracks.items.forEach((element) => {track = track +`\n${element.name}`});
-            console.log(track);
-            Alert.alert("Tracks", `${track}`);
-            track="";
-           
-        }
-       
-    }
-
-
- const { token } = route.params;
-
  return(
-<Container style={{flex:1 ,backgroundColor: "#F4DECB"}} >
-         
-         <FlatList style={{height:300}}
-          data = {artistInformacion.artists}
+<Container style={styles.container} >
+        <View>
+         <FlatList
+          data = {artistInformation.artists}
           keyExtractor={(item) => item.id}
           ListEmptyComponent={<Text>No se han encontrado peliculas</Text>}
           renderItem={({item})=>{
              return (
-                 <Container style={{backgroundColor:'white', height:'0%' }} >
-                 <View style={{flex:0.3,backgroundColor:"#F4DECB",flexDirection:"row"}}>
+            <Container style={styles.backgroundInformation} >
+
+                 <View style={styles.viewImage}>
                                 { 
                                     item.images.map((image)=> (
                                     <Image key={image.id} source={{uri: image.url}} style={ styles.topImage}></Image>
                                     ))
                                  }
-                 <View style={{ height:'70%',width:'50%' ,left:'24%' ,top:'2%' ,backgroundColor:"#F4DECB",flexDirection:"row"}}>
-                                
-                 <Text style={{fontSize:10, top:'80%',right:'319%'}}>Followers</Text>
-                                <Text style={{  right:'362%', top:'77%'}}>
-                                {"\n"} {item.followers.total}
-                                </Text>
-                                 
-                 </View>
-                 <View style={{  backgroundColor:"rgba(64,62,62,100)",position:"absolute", width:'45%' ,height:'90%', left:'5%',top:'3.7%'}} >
-    
-                    <H1 style={{  color:"#F4DECB",left:'10%',top:'0%',height:'50%',width:"95%"}} >
-                    {item.name}
-                    </H1>
-                    <Container  style={{ backgroundColor:"#F4DECB", bottom:'2%' ,width:'96%' ,left:'2%'}} >
-                        <Text>Generos:</Text>
-                        <ScrollView  >
+                </View>
+
+                <View style={styles.viewItemsText}>
+                    <Text style={styles.itemName}>
+                        {item.name}
+                        </Text>
+                    <Text style={styles.itemFollowers}>
+                        Followers  {item.followers.total}
+                    </Text>
+                </View>
+
+                <Container style={styles.containerGenres} >
+                        
+                        <ScrollView>
                         {
                             item.genres.map((genre)=>(
-                            <Text>{genre}</Text>
+                            <Text style={styles.textGenres} >{genre}</Text>
                             ))
                         }
                         </ScrollView>
-                    </Container>
-             
- </View>
+                </Container>
 
-
-
-                </View>
-             </Container>
+            </Container>
              )
          }}
          />
-   
-         <FlatList 
+    </View>
+    
+    <Container style={styles.containerAlbum} >
+         <FlatList style={styles.flatListAlbum}
             data={album.items}
             keyExtractor={(item)=>item.id}
             ListEmptyComponent={<Spinner color="black" />}
             renderItem={({item})=>{
                 return (
-                    <Container style={{ marginLeft:'5%', marginRight:'5%' ,backgroundColor:"rgba(64,62,62,80)" ,height:'10%'}} >
+                    <Container style={styles.containerListAlbum} >
                         
                         <Content >
                             <List  >
-                                <ListItem thumbnail style={{width:"100%", height:'45%'}}>
+                                <ListItem thumbnail style={styles.listItem}>
                                     <Left>
                                     { 
                                     item.images.map((image)=> (
                                          
-                                    <Thumbnail key={image.id} square source={{uri: image.url}  } style={{ position:"absolute", top:'100%' ,bottom:'5%' }} />
+                                    <Thumbnail key={image.id} square source={{uri: image.url} } style={styles.imageAlbum} />
                                      ))
                                      }
                                      </Left>
-                                    <View style={{left:70, width:'60%', height:'100%', bottom:'0%', top:'5%'}} >
+
+                                    <View style={styles.bodyOfList} >
                                         
-                                        <Text note numberOfLines={1} style={{color: '#F4DECB', fontWeight: 'bold' ,width:'95%'}} >
+                                        <Text note numberOfLines={1} style={styles.nameOfAlbum} >
                                             {item.name}
                                         </Text>
 
-                                        <Text note numberOfLines={1}>
+                                        <Text note numberOfLines={1} style={styles.albumGroup} >
                                             {item.album_group}
 
                                         </Text>
                                        
                                     </View> 
-                                    <View style={{left:70,height:80,width:'14%' , top:'10%', bottom:'80%'}} />
-                                        <Button style={{position:"absolute" ,left:'80%',height:'80%',width:'10%' ,top:'20%',bottom:'40%' ,backgroundColor:"rgba(64,62,62,80)"}} onPress={()=> {AlertTrackList({id: item.id}) ;}}>
-                                        
-                                    <Text style={{color:'white', fontWeight: 'bold' }} >{` . . . `}</Text>
+                                    <View style={styles.viewOfBottomAlert}>
+                                        <Button style={styles.bottomAlert} onPress={()=> {AlertTrackList({id: item.id}) ;}}>
+                                            <Text style={styles.textBottomAlert} > . . .</Text>
                                         </Button>
-                                    
+                                    </View>
                                 </ListItem>
                             </List>
                         </Content>
@@ -241,41 +214,174 @@ const getAnAlbumTracks = async () =>  {
                 )
             }}
          />
+    </Container>
+    
 
 </Container>
      
  );
 };
 
-//style={{left:'10%',height:'50%',width:'70%' ,top:'20%',bottom:'40%' ,backgroundColor:"rgba(64,62,62,80)"}} onPress={()=> {setIdAlbum({id: item.id}) ; AlertTrackList(true) ;}}
-/**
- *                                            <Button style={{position:'absolute',left:'100%',height:60,width:40 ,top:'60%',bottom:'40%' ,backgroundColor:'blue'}} icon onPress={()=> {AlertTrackList(item.id)}}>
-                                            <Text style={{color:'white', fontWeight: 'bold' }} >{`...`}</Text>
-                                            </Button>
- */
 
-//style={{flex:0.1 ,left:'5%', right:'5%',height:'10%',width:'10%', position:'relative',top:'100%',bottom:'40%' ,backgroundColor:"rgba(64,62,62,80)"}}
-//setIdAlbum({id: item.id}) ;
+
 const styles = StyleSheet.create
 (
     {
+        container:
+        {
+            backgroundColor:'#49274A',
+             flex:1
+        },
+        backgroundInformation:
+        {
+            backgroundColor:'#49274A',
+            height:height * 0.40 
+        },
+        albumGroup:
+        {
+            textTransform:'capitalize'
+        },
+        viewImage:
+        {
+            flex:0.4 ,
+            backgroundColor:'#49274A',
+            flexDirection:"row"
+        },
+        viewItemsText:
+        {
+            position:'absolute', 
+            alignItems:'center',
+            width:width*0.98, 
+            top:'67%'
+        },
+        itemName:
+        {
+            fontSize:30,
+            textShadowOffset:{width:0 ,height:3}, 
+            elevation:0, 
+            textShadowColor:'#000000',
+            textShadowRadius:7, 
+            shadowOpacity:1.0  ,
+            color:"#F4DECB"
+        },
+        itemFollowers:
+        {
+            bottom:'6%', 
+            fontSize:12,
+            textShadowOffset:{width:0 ,height:1}, 
+            elevation:0, 
+            textShadowColor:'#000000',
+            textShadowRadius:4, 
+            shadowOpacity:1.0  ,
+            color:"#F4DECB"
+        },
+        containerGenres:
+        {
+            position:'absolute', 
+            width:'50%',
+            height:'40%',
+            backgroundColor:'transparent' ,
+            left:'4%'
+        },
+        textGenres:
+        {
+            color:'#F8EEE7', 
+            textTransform:"capitalize",
+            textAlign:"left", 
+            textShadowOffset:{width:0 ,height:1}, 
+            elevation:0, 
+            textShadowColor:'#000000',
+            textShadowRadius:7, 
+            shadowOpacity:1.0
+        },
+        topImage:
+        {
+           
+            position:'relative',
+            width:width ,
+            height: height * 0.40,
+            top:'0%',
+            left:'0%'
+        },
+
+
+        containerAlbum:
+        {
+            top:height*0.35,
+            position:'absolute', 
+            width:width ,
+            backgroundColor:'#49274A',
+            borderTopRightRadius:30,
+            borderTopLeftRadius:30
+        },
+        flatListAlbum:
+        {
+            marginTop:'1%',
+            marginBottom:'82%'
+        },
+        containerListAlbum:
+        {
+            marginLeft:'5%', 
+            marginRight:'5%',
+            backgroundColor:'#49274A',
+            height:'10%'
+        },
+        listItem:
+        {
+            width:"100%", 
+            height:'45%'
+        },
+
+        imageAlbum:
+        {
+            position:"absolute", 
+            top:'100%',
+            bottom:'5%' 
+        },
+
+        bodyOfList:
+        {
+            left:70, 
+            width:'60%', 
+            height:'90%', 
+            bottom:'0%', 
+            top:'5%'
+        },
+
+        nameOfAlbum:
+        {
+            color: '#F4DECB', 
+            fontWeight: 'bold' ,
+            width:'95%'
+        },
+        viewOfBottomAlert:
+        {
+            left:'900%',
+            height:80,
+            width:'14%', 
+            top:'10%', 
+            bottom:'80%'
+        },
+        bottomAlert:
+        {
+            left:'3%',
+            width:'90%', 
+            borderBottomWidth:0,
+            shadowOffset: {height: 0, width: 0}, 
+            shadowOpacity: 0, 
+            elevation: 0  ,
+            backgroundColor:'#49274A'
+        },
+        textBottomAlert:
+        {
+            color:'white', 
+            fontWeight: 'bold' 
+        },
         CardItem:
         {
             left:15,
             width: width *0.91,
             height: height * 0.5
-        },
-
-        topImage:
-        {
-            shadowOpacity:0.3,
-            shadowRadius:100,
-            shadowOffset:{height:0, width:0},  
-            left:'-3%',
-            width:width *0.41 ,
-            height: height * 0.2,
-            top:'-2%',
-            margin: '5%'
         }
     }
 );
