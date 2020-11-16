@@ -7,7 +7,7 @@ import  {   Input,  Container,  Item,  H1,  Button,
             Header,  Icon,  Spinner,  Card,  CardItem,
             H3, Body
         } from "native-base";
-import {} from "react-native-paper";
+//import {} from "react-native-paper";
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
 import { TouchableOpacity } from "react-native-gesture-handler";
