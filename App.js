@@ -24,7 +24,23 @@ export default function App()
       <StatusBar  barStyle="light-content" hidden={false} backgroundColor="#49274A" translucent={true} />
       
       <Stack.Navigator initialRouteName="movieList">
-      <Stack.Screen name="WaveLogin" component={Login} />
+      <Stack.Screen 
+        options={{
+          title: 'Login',
+          headerStyle: 
+        {
+          elevation:0,
+          backgroundColor: '#49274A',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: 
+        {
+          textAlign:'right',
+          fontWeight: 'bold',
+        },
+      }}
+      name="WaveLogin" component={Login}/>
+
       <Stack.Screen 
        options={{
         title: 'Tracks',
