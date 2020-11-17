@@ -239,6 +239,7 @@ const styles = StyleSheet.create
         },
         albumGroup:
         {
+            position:"relative",
             textTransform:'capitalize'
         },
         viewImage:
@@ -341,15 +342,17 @@ const styles = StyleSheet.create
 
         bodyOfList:
         {
+            backgroundColor:'blue',
             left:70, 
             width:'60%', 
-            height:'90%', 
+            height:'700%', 
             bottom:'0%', 
-            top:'5%'
+            top:'9%'
         },
 
         nameOfAlbum:
         {
+            position:'relative',
             color: '#F4DECB', 
             fontWeight: 'bold' ,
             width:'95%'

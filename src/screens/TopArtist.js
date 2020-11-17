@@ -164,6 +164,7 @@ const styles = StyleSheet.create
         },
         CardItemText:
         {
+            top:0,
             left:'0%',
             height:'30%',
             backgroundColor: 'rgba(64,62,62,80)'

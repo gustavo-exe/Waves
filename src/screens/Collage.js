@@ -74,7 +74,7 @@ const Collage = ({route, navigation}) =>
         <Container style={{flex:1 ,backgroundColor:'#49274A'}} >
             
             <View style={{ justifyContent:'center',marginLeft:'8.7%',marginRight:'8.7%',top:'0%',alignSelf:'stretch',flex:0.2}} >
-                <Text style={{top:'15%', color:'#F4DECB'}} >
+                <Text style={{top:'15%',marginBottom:10 ,color:'#F4DECB'}} >
                 User's Top
                 </Text>
                 <Text style={{fontSize:45, color:'#F4DECB'}} >
@@ -83,7 +83,7 @@ const Collage = ({route, navigation}) =>
             </View>
            
 
-            <Container style={{flex:1,left:0 ,alignItems:"center",backgroundColor:'#49274A',borderRadius:20 ,margin:'0%'}} >
+            <View style={{flex:0.84,left:0 ,alignItems:"center",backgroundColor:'blue',borderRadius:20 ,margin:'0%'}} >
             <FlatList
                 numColumns={3}
 
@@ -119,7 +119,7 @@ const Collage = ({route, navigation}) =>
                 )
             }}
         />
-         </Container>
+         </View>
             <View style={{alignItems:'center' ,justifyContent:'flex-start',marginLeft:'8.7%',marginRight:'8.7%',alignSelf:'stretch',flex:0.1}} >
             <Text style={{ color: 'rgba(248,238,231,0.3)' }} >
                     Source Spotify Api do it with Waves
