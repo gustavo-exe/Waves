@@ -76,24 +76,25 @@ const Home = ({route, navigation}) =>
 
     //const { token } = route.params;
     return(
-        <Container style={{flex:1, backgroundColor: '#F4DECB'}}>
-            <Image source={require("../../assets/Degradado.png")} style={{ zIndex: 0, width: width, height: height * 0.5} }>
+        <Container style={{flex:1, backgroundColor: 'transparent'}}>
+            <Image source={require("../../assets/Degradado.png")} style={{flex:1, zIndex: 0, width: width, height: height * 0.5} }>
             </Image>
             
-            <View style={{position:'absolute' ,flex:0.8, width:width ,backgroundColor:'#F4DECB' }} >           
-                    <Button title="Top artists" onPress={ () => navigation.navigate('WaveTop',{token})} />
- 			        <Text style={{position:'relative'}} > {user.display_name} </Text>
-            		<Text> most listened artists</Text>
+            <View style={{position:'absolute' , flex:0.5, width:width , backgroundColor:'transparent'}} >   
+                            
+                    <Text style={styles.welcome}> Hi,</Text>
+ 			        <Text style={styles.welcome}> {user.display_name} </Text>
+            		<Text style={styles.mostListened}> Most listened artist</Text>
             </View>
 
-            <View  style={{position: "absolute" ,top: height*0.18 ,backgroundColor:'#F4DECB'}}>
+            <View  style={{position: "absolute" ,top: height*0.18 ,backgroundColor:'transparent'}}>
             <FlatList
                 data = {artist.items}
                 keyExtractor={(item) => item.id}
-                ListEmptyComponent={<Text>No se han encontrado artistas</Text>}
+                ListEmptyComponent={<Text>User not found</Text>}
                 renderItem={({ item }) =>{
                     return(
-                        <View style={{backgroundColor: '#F4DECB'}}>
+                        <View style={{backgroundColor: 'transparent'}}>
                             <CardItem style={styles.cardImage}>
                                 { item.images.map((image)=> 
                                     <Image key={image.id} source={{uri: image.url}} style={styles.topImage} ></Image>
@@ -127,31 +128,49 @@ const styles = StyleSheet.create({
 
     cardImage:{
         alignItems:'center', 
-        backgroundColor:'#F4DECB'
+        backgroundColor:'transparent'
     },
 
     topImage:
     {
             left: 0,
-            right:20,
-            width:width * 0.70,
-            height: height * 0.3,
+            right: 15,
+            width:width * 0.77,
+            height: height * 0.4,
             borderRadius: 15,
-            margin:34     
+            margin: 27,
+            top: '-10%'
     },
     name:{
-        color: '#49274A',
-        left: 50,
-        fontSize: 25,
-        top: -30
+        color: '#F4DECB',
+        //color: '#49274A',
+        left: '50%',
+        top: '-155%',
+        fontSize: 35
     },
 
     next:{
-        backgroundColor: '#F4DECB', 
+        backgroundColor: 'transparent', 
         flex:0.6, 
         position: "absolute", 
         width: width, 
-        top: height * 0.75
+        top: height * 0.65
+    },
+    welcome:{
+        color: '#F4DECB',
+        left: '9%',
+        //alignItems: "flex-start",
+        top: '26%',
+        fontSize: 26,
+        //fontStyle: 'italic'
+    },
+    mostListened:{
+        color: '#F4DECB',
+        left: '9%',
+        //alignItems: "center",
+        top: '40%',
+        fontSize: 22,
+        //fontStyle: 'italic'
     }
 
     /*Contenedor: {

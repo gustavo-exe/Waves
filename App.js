@@ -25,7 +25,6 @@ export default function App()
       
       <Stack.Navigator initialRouteName="movieList">
       <Stack.Screen name="WaveLogin" component={Login} />
-      <Stack.Screen name="WaveHome" component={Home} />
       <Stack.Screen 
        options={{
         title: 'Tracks',
@@ -42,6 +41,24 @@ export default function App()
         },
       }}
       name="WaveCollage" component={Collage} />
+
+      <Stack.Screen 
+        options={{
+          title: 'Most listened',
+          headerStyle: 
+        {
+          elevation:0,
+          backgroundColor: '#49274A',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: 
+        {
+          textAlign:'right',
+          fontWeight: 'bold',
+        },
+      }}
+      name="WaveHome" component={Home}/>
+
 
       <Stack.Screen 
       
