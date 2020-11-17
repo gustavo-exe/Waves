@@ -8,7 +8,6 @@ import  {   Input,  Container,  Item,  H1,  Button,
             Header,  Icon,  Spinner,  Card,  CardItem,
             H3, Body, Right
         } from "native-base";
-import {} from "react-native-paper";
 import backend from "../api/backend";
 import { Col, Row, Grid } from 'react-native-easy-grid';
 // Valores del destructing

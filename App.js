@@ -82,7 +82,6 @@ export default function App()
       }}
       name="WaveAbout" component={About}/>
 
-<<<<<<< HEAD
       <Stack.Screen 
       options={{
         title: 'Artist results',
@@ -94,25 +93,11 @@ export default function App()
         headerTintColor: '#fff',
         headerTitleStyle: 
         {
-=======
-      <Stack.Screen
-      options={{
-        title: 'Most listened',
-        headerStyle:{
-          backgroundColor: '#49274A',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle:{
->>>>>>> 74b3754ae19b5f35cc9bb406792ddbecbf1b7d37
           textAlign:'right',
           fontWeight: 'bold',
         },
       }}
-<<<<<<< HEAD
       name="SearchArtist" component={SearchArtist} />
-=======
-      name="MostListened" component={Home}/>
->>>>>>> 74b3754ae19b5f35cc9bb406792ddbecbf1b7d37
     </Stack.Navigator>
 
 
