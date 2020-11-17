@@ -8,6 +8,7 @@ import {Button, Container, Input, Item, Icon} from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { color } from 'react-native-reanimated';
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 
 //Dimensiones de pantalla
@@ -56,11 +57,12 @@ const Login = ({navigation}) => {
         </View> 
         
         <View style={styles.CuerpoDeIntrucciones}>
-          <Text style={styles.Texto}>1.- Abrir el navegador precionando el boton "open browser"</Text>
+          <Text style={styles.Texto}>1.- Abrir el navegador presionando el boton "open browser"</Text>
+          <Text style={styles.Texto}>2.- Registrate con tu cuenta de usuario</Text>
           <Text style={styles.Texto}>2.- Aceptas los terminos y condiciones</Text>
           <Text style={styles.Texto}>3.- Abrira una pagina y copias el link y cerrar la ventana.</Text>
           <Text style={styles.Texto}>4.- El link copiado pegarlo en la caja de texto "Link"</Text>
-          <Text style={styles.Texto}>5.- Presione el icono de Waves</Text>        
+          <Text style={styles.Texto}>5.- Presione el icono de Waves para iniciar</Text>        
         </View>
 
         <View style={styles.browser}>
@@ -77,11 +79,16 @@ const Login = ({navigation}) => {
         </View>
 
         <View style={styles.IntereaccionDeIntruscciones}>
-          <Button onPress={ () => navigation.navigate('WaveHome',{token})}> 
-            <Text>Most listened</Text>
-          </Button>
-          <Button style={{ backgroundColor: 'grey'}} title="Cambiar" onPress={ () => navigation.navigate('WaveHome',{token})}>
-          </Button>
+          <TouchableOpacity
+              onPress={() =>
+              navigation.navigate('WaveHome',{token})
+            }
+          >
+          <Image
+            source={require("../../assets/WaveWhite.png")}
+            style={styles.logoApp}
+          />
+          </TouchableOpacity>
         </View>
  
     </View>
@@ -113,8 +120,7 @@ const styles = StyleSheet.create({
     IntereaccionDeIntruscciones:
     {
         flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
+        alignSelf: "center",
         backgroundColor: '#49274A',
         top: '-10%'
         //paddingTop: Constants.statusBarHeight,
@@ -143,15 +149,17 @@ const styles = StyleSheet.create({
       backgroundColor: '#49274A'
     },
     formAlign: {
-      flex: 1,
+      //flex: 1,
       justifyContent: 'center',
-      alignItems: 'center',
+      alignSelf: 'center',
       backgroundColor: '#49274A'
     },
     enlace: {
       width: '60%',
-      height: '30%',
+      height: '25%',
       backgroundColor: '#F4DECB',
+      top: '-15%',
+      
     },
     /*enlaceInput:{
       borderWidth: 1,
@@ -163,7 +171,13 @@ const styles = StyleSheet.create({
       height: '50%',
       width: '30%',
       alignSelf: "center"
-    }
+    },
+    logoApp: {
+      width: width,
+      height: height * 0.10,
+      resizeMode: "contain",
+    },
+
     
 });
 
