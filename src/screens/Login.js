@@ -59,10 +59,10 @@ const Login = ({navigation}) => {
         <View style={styles.CuerpoDeIntrucciones}>
           <Text style={styles.Texto}>1.- Abrir el navegador presionando el boton "open browser"</Text>
           <Text style={styles.Texto}>2.- Registrate con tu cuenta de usuario</Text>
-          <Text style={styles.Texto}>2.- Aceptas los terminos y condiciones</Text>
-          <Text style={styles.Texto}>3.- Abrira una pagina y copias el link y cerrar la ventana.</Text>
-          <Text style={styles.Texto}>4.- El link copiado pegarlo en la caja de texto "Link"</Text>
-          <Text style={styles.Texto}>5.- Presione el icono de Waves para iniciar</Text>        
+          <Text style={styles.Texto}>3.- Aceptas los terminos y condiciones</Text>
+          <Text style={styles.Texto}>4.- Abrira una pagina y copias el link y cerrar la ventana.</Text>
+          <Text style={styles.Texto}>5.- El link copiado pegarlo en la caja de texto "Link"</Text>
+          <Text style={styles.Texto}>6.- Presione el icono de Waves para iniciar</Text>        
         </View>
 
         <View style={styles.browser}>

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {ObtenerToken}from "../api/backend";
-import { Content,H1, H3, Input, Container, Left, Spinner, Item, Card, CardItem, Body, header,Icon} from "native-base";
-import { StyleSheet, Image, Text, Dimensions,Button ,FlatList, View} from 'react-native';
+import { Content,H1, H3, Input, Container, Left, Spinner, Item, Card, Button,  CardItem, Body, header,Icon, Right} from "native-base";
+import { StyleSheet, Image, Text, Dimensions ,FlatList, View} from 'react-native';
 //import { Entypo } from '@expo/vector-icons';
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Header } from "react-native/Libraries/NewAppScreen";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Valores del destructing
 const {width, height} = Dimensions.get("window");
@@ -77,6 +79,7 @@ const Home = ({route, navigation}) =>
     //const { token } = route.params;
     return(
         <Container style={{flex:1, backgroundColor: 'transparent'}}>
+            
             <Image source={require("../../assets/Degradado.png")} style={{flex:1, zIndex: 0, width: width, height: height * 0.5} }>
             </Image>
             
@@ -111,15 +114,19 @@ const Home = ({route, navigation}) =>
             </View>
             
             <View  style={styles.next} >
-                <Button  title="Top artists" onPress={ () => navigation.navigate('WaveTop',{})} />
-                <Button title="collage" onPress={()=> navigation.navigate('WaveCollage',{})} />
-                
+                <Button style={styles.estiloButton} onPress={ () => navigation.navigate('WaveTop',{})}>
+                    <MaterialCommunityIcons name="artist" size={38} color="#F4DECB" style={{left: '8%'}}/>
+                    <Text style={{left: '-25%', color: '#F4DECB', fontSize: 18}}>Top artists</Text>
+                    
+                </Button>
+                <Button style={styles.estiloButton2} onPress={()=> navigation.navigate('WaveCollage',{})}>
+                    <MaterialCommunityIcons name="collage" size={38} color="#F4DECB" style={{left: 10}}/>
+                    <Text style={{left: '-40%', color: '#F4DECB', fontSize: 18}}>Collage</Text>
+                </Button>
             </View>
-
-
             
             
-        
+
         </Container>
     )
 }
@@ -171,6 +178,23 @@ const styles = StyleSheet.create({
         top: '40%',
         fontSize: 22,
         //fontStyle: 'italic'
+    },
+    estiloButton:{
+        backgroundColor: '#49274A',
+        height: '80%',
+        width: '40%',
+        top:'9%',
+        left: '28%'
+        //alignSelf: "flex-start",
+        //justifyContent: "flex-end"
+    },
+    estiloButton2:{
+        backgroundColor: '#49274A',
+        height: '80%',
+        width: '40%',
+        top: '-12%',
+        left: '195%',
+        //alignSelf: "center"
     }
 
     /*Contenedor: {

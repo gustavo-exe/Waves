@@ -23,7 +23,8 @@ export default function App()
 
       <StatusBar  barStyle="light-content" hidden={false} backgroundColor="#49274A" translucent={true} />
       
-      <Stack.Navigator initialRouteName="movieList">
+      <Stack.Navigator initialRouteName="WaveLogin">
+      
       <Stack.Screen 
         options={{
           title: 'Login',
@@ -42,6 +43,24 @@ export default function App()
       name="WaveLogin" component={Login}/>
 
       <Stack.Screen 
+        options={{
+          title: 'Most listened',
+          headerStyle: 
+        {
+          elevation:0,
+          backgroundColor: '#49274A',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: 
+        {
+          textAlign:'right',
+          fontWeight: 'bold',
+        },
+      }}
+      name="WaveHome" component={Home}/>
+      
+
+      <Stack.Screen 
        options={{
         title: 'Tracks',
         headerStyle: 
@@ -58,22 +77,7 @@ export default function App()
       }}
       name="WaveCollage" component={Collage} />
 
-      <Stack.Screen 
-        options={{
-          title: 'Most listened',
-          headerStyle: 
-        {
-          elevation:0,
-          backgroundColor: '#49274A',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: 
-        {
-          textAlign:'right',
-          fontWeight: 'bold',
-        },
-      }}
-      name="WaveHome" component={Home}/>
+      
 
 
       <Stack.Screen 
