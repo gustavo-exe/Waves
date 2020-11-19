@@ -1,8 +1,8 @@
 import React , {useEffect, useState} from "react";
-import { StyleSheet,Text, View, Image, Dimensions,FlatList, ImageBackgroundBase, ImageBackground, Alert } from "react-native";
-import  {   Input,  Container,  Item,  H1,  Button,
-            Header,  Icon,  Spinner,  Card,  CardItem,
-            H3, Body, Content, List, ListItem, Thumbnail,Left, Right
+import { StyleSheet,Text, View, Image, Dimensions,FlatList,Alert } from "react-native";
+import  {   Container, Button,
+            Spinner, Content, List, 
+            ListItem, Thumbnail,Left
         } from "native-base";
 
 import backend from "../api/backend";
@@ -29,10 +29,12 @@ const TopArtistAndTracks = ({route, navigation}) =>
  // Get Several Artists
  //https://developer.spotify.com/documentation/web-api/reference/artists/get-several-artists/
 
- //Promesa para informacion basica del artista
  const GetArtistInformation = async () =>  {
      try {
-         //Consulta a la api
+
+        /*
+            Informacion basica del artista
+        */
          const response = await backend.get(`artists?ids=${id}`);
 
          setArtistInformation(response.data);
@@ -44,10 +46,12 @@ const TopArtistAndTracks = ({route, navigation}) =>
      }
  }
  
- //Promesa del album
+ //Get an Artist's Albums
  const getAnAlbum = async () =>  {
     try {
-        //Consulta a la api
+        /*
+            Albumes del artista
+        */
         const response = await backend.get(`artists/${id}/albums?include_groups=single%2Calbum&market=ES&limit=50&offset=0`);
 
         setAlbum(response.data);
@@ -60,10 +64,12 @@ const TopArtistAndTracks = ({route, navigation}) =>
 }
 
 
-//Obetener un Album's Tracks
+//Get an Album's Tracks
 const getAnAlbumTracks = async () =>  {
     try {
-        //Consulta a la api
+        /* 
+            Catalogo de informacion acerca de las canciones de un album
+        */
         const response = await backend.get(`albums/${idAlbum.id}/tracks?market=ES&limit=50&offset=0`);
         
         
@@ -87,31 +93,28 @@ const getAnAlbumTracks = async () =>  {
 
 /*Alt + shift + a: para comentar las lineas seleccionadas*/
 
+//Funcion alerta con las canciones del album
 function  AlertTrackList(idAlbumList)
 {
      console.log(idAlbumList);
      setIdAlbum(idAlbumList) ;
-     
-     
      getAnAlbumTracks();
-     
-
-     
      if (!anAlbumTracks)
-     {
-        Alert.alert("cargando datos");
-     }else{
+        {
+            Alert.alert("Cargando datos");
+        }
+     else
+        {
+            //Llenar las variabes con solo los nombres de las canciones
+            anAlbumTracks.items.map((element) => { setTrack(track.push(`\n${element.name}`));});
+            console.log(track);
+            
+            setIdAlbum(" ");
 
-        //console.log(AnAlbumTracks);
-         
-        anAlbumTracks.items.forEach((element) => {track.push(`\n${element.name}`);});
-        console.log(track);
-         
-        setIdAlbum(" ");
-        Alert.alert("Tracks", `${track}`);
-        setTrack(track.length = 0);
-        
-     }
+            //La alerta con la lista de canciones
+            Alert.alert("Tracks", `${track}`);
+            setTrack(track.length = 0);
+        }
     
  }
 
@@ -129,7 +132,7 @@ function  AlertTrackList(idAlbumList)
          <FlatList
           data = {artistInformation.artists}
           keyExtractor={(item) => item.id}
-          ListEmptyComponent={<Text>No se han encontrado peliculas</Text>}
+          ListEmptyComponent={<Text>I'cant found artist information.</Text>}
           renderItem={({item})=>{
              return (
             <Container style={styles.backgroundInformation} >
@@ -359,6 +362,7 @@ const styles = StyleSheet.create
         },
         viewOfBottomAlert:
         {
+            
             left:'900%',
             height:80,
             width:'14%', 
@@ -367,6 +371,7 @@ const styles = StyleSheet.create
         },
         bottomAlert:
         {
+            
             left:'3%',
             width:'90%', 
             borderBottomWidth:0,
