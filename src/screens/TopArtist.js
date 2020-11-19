@@ -190,9 +190,9 @@ const styles = StyleSheet.create
         },
         CardItemText:
         {
-            top:0,
+            top:-3,
             left:'0%',
-            height:'30%',
+            height:'31%',
             backgroundColor: 'rgba(64,62,62,80)'
         },
 

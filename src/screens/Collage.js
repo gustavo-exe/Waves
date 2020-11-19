@@ -55,7 +55,7 @@ const Collage = ({route, navigation}) =>
 
     return(     
 
-        <Container style={styles.container} >
+        <View style={styles.container} >
             
             <View style={styles.viewEncabezado} >
                 <Text style={styles.textUser} >
@@ -68,7 +68,8 @@ const Collage = ({route, navigation}) =>
            
 
             <View style={styles.viewContainerCollage} >
-                <FlatList
+                <FlatList 
+                    showsHorizontalScrollIndicator={false}
                     numColumns={3}
                     data = {top.items}
                     keyExtractor={(item) => item.id}
@@ -102,7 +103,7 @@ const Collage = ({route, navigation}) =>
                 </Text>
             </View>
 
-        </Container>
+        </View>
         
     );
 };
@@ -146,16 +147,21 @@ const styles = StyleSheet.create
 
         viewContainerCollage:
         {
-            flex:0.84,left:0 ,
+            flex:0.85,left:0 ,
             alignItems:"center",
             backgroundColor:'blue',
-            borderRadius:20 ,
+        
             margin:'0%'
         },
 
         viewaOnlyTrack:
         {
-            backgroundColor:'blue',margin:-1 ,height:height*0.14, width:width*0.28
+            position:'relative',
+            backgroundColor:'pink',
+            margin:-1 ,
+            height:height*0.14, 
+            width:width*0.28
+            
         },
 
         viewImage:

@@ -200,12 +200,13 @@ function  AlertTrackList(idAlbumList)
 
                                         <Text note numberOfLines={1} style={styles.albumGroup} >
                                             {item.album_group}
-
                                         </Text>
+
+                                        
                                        
                                     </View> 
                                     <View style={styles.viewOfBottomAlert}>
-                                        <Button style={styles.bottomAlert} onPress={()=> {AlertTrackList({id: item.id}) ;}}>
+                                    <Button style={styles.bottomAlert} onPress={()=> {AlertTrackList({id: item.id}) ;}}>
                                             <Text style={styles.textBottomAlert} > . . .</Text>
                                         </Button>
                                     </View>
@@ -345,7 +346,7 @@ const styles = StyleSheet.create
 
         bodyOfList:
         {
-            backgroundColor:'blue',
+            justifyContent:'center',
             left:70, 
             width:'60%', 
             height:'700%', 
@@ -362,8 +363,8 @@ const styles = StyleSheet.create
         },
         viewOfBottomAlert:
         {
-            
-            left:'900%',
+           
+            left:'940%',
             height:80,
             width:'14%', 
             top:'10%', 
