@@ -31,7 +31,7 @@ export default function App()
           headerStyle: 
         {
           elevation:0,
-          backgroundColor: '#49274A',
+          backgroundColor: 'black',
         },
         headerTintColor: '#fff',
         headerTitleStyle: 

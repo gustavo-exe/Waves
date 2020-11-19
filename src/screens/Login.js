@@ -51,7 +51,7 @@ const Login = ({navigation}) => {
 
 
   return (
-   <View style={{flex:1, backgroundColor:'#49274A'}}>
+   <View style={{flex:1, backgroundColor:'black'}}>
         <View style={styles.TituloDeIntrucciones}>  
           <Text style={styles.Intructions}>INSTRUCCIONES</Text>
         </View> 
@@ -67,7 +67,7 @@ const Login = ({navigation}) => {
 
         <View style={styles.browser}>
           <Button onPress={_handlePressButtonAsync} style={styles.estiloButton}>
-            <Text style={{left: '70%'}}>Open browser</Text>
+            <Text style={{left: '160%', color: 'white'}}>Open browser</Text>
           </Button>
           <Button title="Open WebBrowser" onPress={_handlePressButtonAsync}/> 
         </View>
@@ -85,7 +85,7 @@ const Login = ({navigation}) => {
             }
           >
           <Image
-            source={require("../../assets/WaveWhite.png")}
+            source={require("../../assets/Logo_Waves.png")}
             style={styles.logoApp}
           />
           </TouchableOpacity>
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "flex-start",
         justifyContent: "center",
-        backgroundColor: '#49274A',
+        backgroundColor: 'black',
         
         //paddingTop: Constants.statusBarHeight,
     },
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
             flex: 1,
             alignItems: "flex-start",
             justifyContent: "center",
-            backgroundColor: '#49274A'
+            backgroundColor: 'black'
           //  paddingTop: Constants.statusBarHeight,
     },
 
@@ -121,17 +121,17 @@ const styles = StyleSheet.create({
     {
         flex: 1,
         alignSelf: "center",
-        backgroundColor: '#49274A',
+        backgroundColor: 'black',
         top: '-10%'
         //paddingTop: Constants.statusBarHeight,
     },
 
-    LogoSize: 
+    /*LogoSize: 
     {
         width: width,
         height: height * 0.15,
         resizeMode: "contain"
-    },
+    },*/
     Intructions:{
       fontSize: 35,
       color: 'white',
@@ -146,18 +146,19 @@ const styles = StyleSheet.create({
     },
     browser:{
       flex: 0.5,
-      backgroundColor: '#49274A'
+      backgroundColor: 'black'
     },
     formAlign: {
       //flex: 1,
       justifyContent: 'center',
       alignSelf: 'center',
-      backgroundColor: '#49274A'
+      backgroundColor: 'black'
     },
     enlace: {
-      width: '60%',
+      width: '70%',
       height: '25%',
-      backgroundColor: '#F4DECB',
+      alignSelf: "center",
+      backgroundColor: 'white',
       top: '-15%',
       
     },
@@ -166,15 +167,15 @@ const styles = StyleSheet.create({
       borderColor: '#94618e',
     },*/
     estiloButton:{
-      backgroundColor: '#F4DECB', 
+      backgroundColor: '#49274A', 
       //marginLeft: '32%',
       height: '50%',
-      width: '30%',
+      width: '40%',
       alignSelf: "center"
     },
     logoApp: {
       width: width,
-      height: height * 0.10,
+      height: height * 0.15,
       resizeMode: "contain",
     },
 
