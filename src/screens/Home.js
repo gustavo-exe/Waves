@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {ObtenerToken}from "../api/backend";
-import { Content,H1, H3, Input, Container, Left, Spinner, Item, Card, CardItem, Body, header,Icon} from "native-base";
-import { StyleSheet, Image, Text, Dimensions,Button ,FlatList, View} from 'react-native';
+import { Content,H1, H3, Input, Container, Left, Spinner, Item, Card, Button,  CardItem, Body, header,Icon, Right} from "native-base";
+import { StyleSheet, Image, Text, Dimensions ,FlatList, View} from 'react-native';
 //import { Entypo } from '@expo/vector-icons';
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Header } from "react-native/Libraries/NewAppScreen";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Valores del destructing
 const {width, height} = Dimensions.get("window");
@@ -76,24 +78,26 @@ const Home = ({route, navigation}) =>
 
     //const { token } = route.params;
     return(
-        <Container style={{flex:1, backgroundColor: '#F4DECB'}}>
-            <Image source={require("../../assets/Degradado.png")} style={{ zIndex: 0, width: width, height: height * 0.5} }>
+        <Container style={{flex:1, backgroundColor: 'transparent'}}>
+            
+            <Image source={require("../../assets/Degradado.png")} style={{flex:1, zIndex: 0, width: width, height: height * 0.5} }>
             </Image>
             
-            <View style={{position:'absolute' ,flex:0.8, width:width ,backgroundColor:'#F4DECB' }} >           
-                    <Button title="Top artists" onPress={ () => navigation.navigate('WaveTop',{token})} />
- 			        <Text style={{position:'relative'}} > {user.display_name} </Text>
-            		<Text> most listened artists</Text>
+            <View style={{position:'absolute' , flex:0.5, width:width , backgroundColor:'transparent'}} >   
+                            
+                    <Text style={styles.welcome}> Hi,</Text>
+ 			        <Text style={styles.welcome}> {user.display_name} </Text>
+            		<Text style={styles.mostListened}> Most listened artist</Text>
             </View>
 
-            <View  style={{position: "absolute" ,top: height*0.18 ,backgroundColor:'#F4DECB'}}>
+            <View  style={{position: "absolute" ,top: height*0.18 ,backgroundColor:'transparent'}}>
             <FlatList
                 data = {artist.items}
                 keyExtractor={(item) => item.id}
-                ListEmptyComponent={<Text>No se han encontrado artistas</Text>}
+                ListEmptyComponent={<Text>User not found</Text>}
                 renderItem={({ item }) =>{
                     return(
-                        <View style={{backgroundColor: '#F4DECB'}}>
+                        <View style={{backgroundColor: 'transparent'}}>
                             <CardItem style={styles.cardImage}>
                                 { item.images.map((image)=> 
                                     <Image key={image.id} source={{uri: image.url}} style={styles.topImage} ></Image>
@@ -110,15 +114,19 @@ const Home = ({route, navigation}) =>
             </View>
             
             <View  style={styles.next} >
-                <Button  title="Top artists" onPress={ () => navigation.navigate('WaveTop',{})} />
-                <Button title="collage" onPress={()=> navigation.navigate('WaveCollage',{})} />
-                
+                <Button style={styles.estiloButton} onPress={ () => navigation.navigate('WaveTop',{})}>
+                    <MaterialCommunityIcons name="artist" size={38} color="#F4DECB" style={{left: '8%'}}/>
+                    <Text style={{left: '-25%', color: '#F4DECB', fontSize: 18}}>Top artists</Text>
+                    
+                </Button>
+                <Button style={styles.estiloButton2} onPress={()=> navigation.navigate('WaveCollage',{})}>
+                    <MaterialCommunityIcons name="collage" size={38} color="#F4DECB" style={{left: 10}}/>
+                    <Text style={{left: '-40%', color: '#F4DECB', fontSize: 18}}>Collage</Text>
+                </Button>
             </View>
-
-
             
             
-        
+
         </Container>
     )
 }
@@ -127,31 +135,66 @@ const styles = StyleSheet.create({
 
     cardImage:{
         alignItems:'center', 
-        backgroundColor:'#F4DECB'
+        backgroundColor:'transparent'
     },
 
     topImage:
     {
             left: 0,
-            right:20,
-            width:width * 0.70,
-            height: height * 0.3,
+            right: 15,
+            width:width * 0.77,
+            height: height * 0.4,
             borderRadius: 15,
-            margin:34     
+            margin: 27,
+            top: '-10%'
     },
     name:{
-        color: '#49274A',
-        left: 50,
-        fontSize: 25,
-        top: -30
+        color: '#F4DECB',
+        //color: '#49274A',
+        left: '50%',
+        top: '-155%',
+        fontSize: 35
     },
 
     next:{
-        backgroundColor: '#F4DECB', 
+        backgroundColor: 'transparent', 
         flex:0.6, 
         position: "absolute", 
         width: width, 
-        top: height * 0.75
+        top: height * 0.65
+    },
+    welcome:{
+        color: '#F4DECB',
+        left: '9%',
+        //alignItems: "flex-start",
+        top: '26%',
+        fontSize: 26,
+        //fontStyle: 'italic'
+    },
+    mostListened:{
+        color: '#F4DECB',
+        left: '9%',
+        //alignItems: "center",
+        top: '40%',
+        fontSize: 22,
+        //fontStyle: 'italic'
+    },
+    estiloButton:{
+        backgroundColor: '#49274A',
+        height: '80%',
+        width: '40%',
+        top:'9%',
+        left: '28%'
+        //alignSelf: "flex-start",
+        //justifyContent: "flex-end"
+    },
+    estiloButton2:{
+        backgroundColor: '#49274A',
+        height: '80%',
+        width: '40%',
+        top: '-12%',
+        left: '195%',
+        //alignSelf: "center"
     }
 
     /*Contenedor: {
