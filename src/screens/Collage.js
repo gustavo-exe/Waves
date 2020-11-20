@@ -149,15 +149,12 @@ const styles = StyleSheet.create
         {
             flex:0.85,left:0 ,
             alignItems:"center",
-            backgroundColor:'blue',
-        
             margin:'0%'
         },
 
         viewaOnlyTrack:
         {
             position:'relative',
-            backgroundColor:'pink',
             margin:-1 ,
             height:height*0.14, 
             width:width*0.28

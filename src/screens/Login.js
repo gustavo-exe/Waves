@@ -54,9 +54,7 @@ const Login = ({navigation}) => {
    <View style={{flex:1, backgroundColor:'black'}}>
         <View style={styles.TituloDeIntrucciones}>  
           <Text style={styles.Intructions}>INSTRUCCIONES</Text>
-        </View> 
-        
-        <View style={styles.CuerpoDeIntrucciones}>
+      
           <Text style={styles.Texto}>1.- Abrir el navegador presionando el boton "open browser"</Text>
           <Text style={styles.Texto}>2.- Registrate con tu cuenta de usuario</Text>
           <Text style={styles.Texto}>3.- Aceptas los terminos y condiciones</Text>
@@ -66,14 +64,13 @@ const Login = ({navigation}) => {
         </View>
 
         <View style={styles.browser}>
-          <Button onPress={_handlePressButtonAsync} style={styles.estiloButton}>
-            <Text style={{left: '160%', color: 'white'}}>Open browser</Text>
+          <Button title="Open Browser" onPress={_handlePressButtonAsync} style={styles.estiloButton}>
+            <Text style={{textAlign:'center', left:'120%' ,color: 'white'}}>Open browser</Text>
           </Button>
-          <Button title="Open WebBrowser" onPress={_handlePressButtonAsync}/> 
         </View>
 
         <View style={styles.formAlign}>
-          <Item style={styles.enlace}>
+          <Item style={{ backgroundColor:'black' ,color:'black'}} >
             <Input placeholder="Link" value={token} onChangeText={setToken} style={styles.enlaceInput} ></Input>
           </Item>
         </View>
@@ -94,27 +91,34 @@ const Login = ({navigation}) => {
     </View>
   );
 };
-////source={require("../../assets/Logo_Waves.png")}
+
 // E S T I L O S
 
 const styles = StyleSheet.create({
     TituloDeIntrucciones:
     {
-        flex: 1,
+        flex: 2,
+        position:'relative',
         alignItems: "flex-start",
         justifyContent: "center",
-        backgroundColor: 'black',
-        
+        minHeight:'10%'
         //paddingTop: Constants.statusBarHeight,
     },
-    
+    enlaceInput:
+    {
+      marginLeft:'7%',
+      marginRight:'7%',
+ 
+      backgroundColor:'#F4DECB'
+
+    },
     CuerpoDeIntrucciones:
     {
-            flex: 1,
-            alignItems: "flex-start",
-            justifyContent: "center",
-            backgroundColor: 'black'
-          //  paddingTop: Constants.statusBarHeight,
+            flex: 1.5,
+            
+
+            minHeight:'25%',
+            justifyContent: "center"
     },
 
     IntereaccionDeIntruscciones:
@@ -125,52 +129,38 @@ const styles = StyleSheet.create({
         top: '-10%'
         //paddingTop: Constants.statusBarHeight,
     },
-
-    /*LogoSize: 
-    {
-        width: width,
-        height: height * 0.15,
-        resizeMode: "contain"
-    },*/
     Intructions:{
-      fontSize: 35,
-      color: 'white',
-      left: '7%',
-      top: '-10%'
+      fontWeight:'bold',
+      fontSize: 30,
+      color:'#F4DECB',
+      marginLeft:'7%',
+      marginRight:'7%',
+      marginBottom:'7%'
     },
     Texto:{
+      marginLeft:'7%',
+      marginRight:'7%',
       color: 'white',
-      fontSize: 16,
-      left:'3%',
-      top: '-25%'
+      fontSize: 16
     },
     browser:{
       flex: 0.5,
-      backgroundColor: 'black'
+      backgroundColor: 'black',
+      alignItems:'center',
+
     },
     formAlign: {
-      //flex: 1,
-      justifyContent: 'center',
-      alignSelf: 'center',
-      backgroundColor: 'black'
+      flex: 1,
+      width:width,
+      backgroundColor:'black',
+      marginLeft:'0%',
+      marginRight:'7%'
+
     },
-    enlace: {
-      width: '70%',
-      height: '25%',
-      alignSelf: "center",
-      backgroundColor: 'white',
-      top: '-15%',
-      
-    },
-    /*enlaceInput:{
-      borderWidth: 1,
-      borderColor: '#94618e',
-    },*/
     estiloButton:{
       backgroundColor: '#49274A', 
-      //marginLeft: '32%',
-      height: '50%',
-      width: '40%',
+      height: '80%',
+      width: '50%',
       alignSelf: "center"
     },
     logoApp: {

@@ -11,7 +11,7 @@ const redirectUri = "http://localhost:8888/callback";
  * https://developer.spotify.com/documentation/general/guides/scopes/
  */
 const scopes = [
-  "user-top-read"
+  "user-top-read user-read-private user-read-email"
 ];
 
 /**
@@ -22,7 +22,7 @@ export const accessUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${r
 )}&response_type=token&show_dialog=true`;
 
 
-
+//Provee informacion en la vida util de la app
 import Constants from "expo-constants";
 
 const ENV ={

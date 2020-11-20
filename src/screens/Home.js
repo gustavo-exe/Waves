@@ -5,7 +5,7 @@ import { StyleSheet, Image, Text, Dimensions ,FlatList, View} from 'react-native
 //import { Entypo } from '@expo/vector-icons';
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { Header } from "react-native/Libraries/NewAppScreen";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -14,6 +14,10 @@ const {width, height} = Dimensions.get("window");
 
 const Home = ({route, navigation}) =>
 {
+    const { token } = route.params;
+    
+    ObtenerToken(token);
+
     //manejo de los artistas
     const [artist, setArtist] = useState(null);
     const [error, setError] = useState(false);
@@ -57,30 +61,11 @@ const Home = ({route, navigation}) =>
         )
     }
 
-    /*return(
-        <Container style={styles.Contenedor}>
-            <H1 style={styles.title}> Hi </H1>
-            <H1 style={styles.title}> gustavo.exe </H1>
-            <Text style={styles.text}>most listened artists</Text>
-            <Card style={styles.CardContainer} >
-                <CardItem style={styles.CardItem} cardBody>
-                    <Body>
-                        {console.log(item.images)}
-                        { item.images.map((image)=> (
-                            <Image key={image.id} source={{uri: image.url}} style={styles.artistImage}></Image>
-                        ))
-                        }
-                    </Body>
-                </CardItem>
-            </Card>
-        </Container>
-    )*/
-
     //const { token } = route.params;
     return(
-        <Container style={{flex:1, backgroundColor: 'transparent'}}>
+        <Container style={{flex:1, backgroundColor: '#F4DECB'}}>
             
-            <Image source={require("../../assets/Degradado.png")} style={{flex:1, zIndex: 0, width: width, height: height * 0.5} }>
+            <Image source={require("../../assets/Degradado.png")} style={{flex:1, zIndex: 0, width: width} }>
             </Image>
             
             <View style={{position:'absolute' , flex:0.5, width:width , backgroundColor:'transparent'}} >   
@@ -104,7 +89,7 @@ const Home = ({route, navigation}) =>
                                     )}
                             </CardItem>
                                     
-                            <View>
+                            <View  >
                                 <Text style={styles.name}>{item.name}</Text>
                             </View>
                         </View>
@@ -112,19 +97,19 @@ const Home = ({route, navigation}) =>
                 }}
                 />
             </View>
-            
-            <View  style={styles.next} >
+
+            <View style={styles.next} >
                 <Button style={styles.estiloButton} onPress={ () => navigation.navigate('WaveTop',{})}>
-                    <MaterialCommunityIcons name="artist" size={38} color="#F4DECB" style={{left: '8%'}}/>
-                    <Text style={{left: '-25%', color: '#F4DECB', fontSize: 18}}>Top artists</Text>
+                    <MaterialCommunityIcons name="artist" size={28} color="#F8EEE7" />
+                    <Text style={{color: '#F8EEE7', fontSize: 18}}>Top artists</Text>
                     
                 </Button>
-                <Button style={styles.estiloButton2} onPress={()=> navigation.navigate('WaveCollage',{})}>
-                    <MaterialCommunityIcons name="collage" size={38} color="#F4DECB" style={{left: 10}}/>
-                    <Text style={{left: '-40%', color: '#F4DECB', fontSize: 18}}>Collage</Text>
+                <Button style={styles.estiloButton} onPress={()=> navigation.navigate('WaveCollage',{})}>
+                    <MaterialCommunityIcons name="collage" size={28} color="#F8EEE7" />
+                    <Text style={{ color: '#F8EEE7', fontSize: 18}}>Collage</Text>
                 </Button>
             </View>
-            
+         
             
 
         </Container>
@@ -135,7 +120,8 @@ const styles = StyleSheet.create({
 
     cardImage:{
         alignItems:'center', 
-        backgroundColor:'transparent'
+        backgroundColor:'transparent',
+        height: height * 0.4
     },
 
     topImage:
@@ -146,116 +132,48 @@ const styles = StyleSheet.create({
             height: height * 0.4,
             borderRadius: 15,
             margin: 27,
-            top: '-10%'
+            top: '0%'
     },
     name:{
-        color: '#F4DECB',
-        //color: '#49274A',
-        left: '50%',
-        top: '-155%',
-        fontSize: 35
+        color: 'black',
+        textAlign:'right',
+        marginRight:'12%',
+        fontSize: 18
     },
 
     next:{
-        backgroundColor: 'transparent', 
-        flex:0.6, 
+        
+        flexDirection:'row',
+        flex:0.8, 
         position: "absolute", 
         width: width, 
-        top: height * 0.65
+        top: height * 0.65,
+        height:height*0.23
     },
     welcome:{
-        color: '#F4DECB',
+        color: '#F8EEE7',
         left: '9%',
-        //alignItems: "flex-start",
-        top: '26%',
+        top: '16%',
         fontSize: 26,
-        //fontStyle: 'italic'
+        fontWeight:'bold'
     },
     mostListened:{
-        color: '#F4DECB',
+        marginTop:'10%',
+        color: '#F8EEE7',
         left: '9%',
-        //alignItems: "center",
-        top: '40%',
-        fontSize: 22,
-        //fontStyle: 'italic'
+        top: '4%',
+        fontSize: 14,
+
     },
     estiloButton:{
+        justifyContent:"center",
         backgroundColor: '#49274A',
         height: '80%',
         width: '40%',
         top:'9%',
-        left: '28%'
-        //alignSelf: "flex-start",
-        //justifyContent: "flex-end"
-    },
-    estiloButton2:{
-        backgroundColor: '#49274A',
-        height: '80%',
-        width: '40%',
-        top: '-12%',
-        left: '195%',
-        //alignSelf: "center"
-    }
-
-    /*Contenedor: {
-        flex: 1,
-        //justifyContent: "center",
-        //alignItems: "flex-start",
-        backgroundColor: 'yellow'
+        marginLeft:'6.5%'
     },
 
-    datos:{
-        flex: 0.5,
-        marginLeft: 10,
-        justifyContent: "flex-end"
-    },
-
-    title: {
-        color: '#49274A',
-        fontWeight: 'bold',
-        left: 8,
-        top: 10,
-    },
-    text: {
-        color: '#49274A',
-        fontWeight: 'bold',
-        left: 8,
-        top: 18,
-    },
-
-    CardContainer: {
-        left:15,
-        width: width *0.94,
-        height: height * 0.6,
-        top: 22,
-    },
-    CardItem:
-    {
-        height:'10%',
-        backgroundColor: 'rgba(64,62,62,80)'
-    },
-    artistImage:
-        {
-
-            left: 0,
-            right: 20,
-            width:width *0.81,
-            height: height * 0.3,
-            margin: 20
-    },*/
-
-    
-
-    /*CardText:
-    {
-        height: '10%',
-        backgroundColor: 'rgba(64,62,62,80)'
-    },
-    
-    boton:{
-        color: '#94618e',
-        right:17
-    }*/
 });
 
 export default Home;
