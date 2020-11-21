@@ -3,7 +3,7 @@
  */
 import React , {useEffect, useState} from "react";
 import { StyleSheet,Text, View, Image, Dimensions,FlatList} from "react-native";
-import  { Container, Spinner,} from "native-base";
+import  {Spinner} from "native-base";
 import backend from "../api/backend";
 
 // Valores del destructing
@@ -98,7 +98,7 @@ const Collage = ({route, navigation}) =>
             />
          </View>
             <View style={styles.viewCredits} >
-            <Text style={styles.textCredits} >
+                <Text style={styles.textCredits} >
                     Source Spotify Api do it with Waves
                 </Text>
             </View>

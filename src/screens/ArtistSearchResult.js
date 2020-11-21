@@ -1,13 +1,11 @@
 import React , {useEffect, useState} from "react";
-import { StyleSheet,Text, View, Image, Dimensions,FlatList, ImageBackgroundBase, ImageBackground } from "react-native";
-import  {   Input,  Container,  Item,  H1,  Button,
-            Header,  Icon,  Spinner,  Card,  CardItem,
+import { StyleSheet,Text, View, Image, Dimensions,FlatList } from "react-native";
+import  {   Container,  Spinner,  
+            Card,  CardItem,
             H3, Body
         } from "native-base";
 
 import backend from "../api/backend";
-import getEnvVars from "../../enviroment";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 // Valores del destructing
 const {width, height} = Dimensions.get("window");
@@ -15,24 +13,20 @@ const {width, height} = Dimensions.get("window");
 const ArtistSearchResult = ({route, navigation}) =>
 {
     const {search} = route.params;
-    //console.log(search);
-    //Estado del TOP
     const [artist, setartists] = useState(null);
     const [error, setError] = useState(false);
-    const [itemId, setItemId] = useState(null);
-   
 
-    //Promesa
     const getArtists = async () =>  {
-        //console.log("Asincrona");
+
         try {
-            //Consulta a la api
+            /*
+                Search for an Item
+                En este caso buscamos los artistas relacionados con el parametro de busqeda.
+            */
             const response = await backend.get(`search?q=${search}&type=artist&market=US&limit=10&offset=0`);
-            
-            //console.log("Estas aqui");
-            console.log(response.data.artists.limit);
+            //console.log(response.data.artists.limit);
             setartists(response.data.artists);
-           //response.artists.map((image)=>{console.log(image)});
+           
         } catch (error) {
 
             setError(true);
