@@ -1,11 +1,10 @@
 
 import axios from "axios";
-import { concat } from "react-native-reanimated";
 import getEnvVars from "../../enviroment";
 const { apiURL } = getEnvVars();
-import React , {useEffect, useState} from "react";
 
-let AuthToken=['BQCRPZ-1QPYXfQj0j11QDnVSbvOHVCl2KBHAepFzLEMQv-ZHkcU8PPIMqciuT3P6IaY5dF4fkecWTm9AdS3bzuQUiOpXL8yM_gfRmXK61BBgk7wvre4-j5aMtnZ0I1ZiQ_-UorXARQMPwiD0cGQEVOkLOtDgPvTBprLYrweO2qK-48V0E1JgIcxdHBcgUDvWcoFDa2CQOfvsJv9hzp7Geiu2o9GOVGCaXF66Ayd_qnsMOLjPYkgEVPN977uypusGRl2udAxQjOxOSKfnvp9sCneRpTUN-akx_aU'];
+//Aqui tiene que ir el nuevo token
+let AuthToken=['Here OAuth Token'];
 
 /*
 Link para solicitar OAuth Token:
@@ -17,14 +16,15 @@ Para solicitar el token ocupamos 3 scopes:
     user-top-read
 */
 
+//Esta funcion se hace para traer el token del input
 export function ObtenerToken(token)
 {
-    //Splice remplazo un valor del arrelo con uno nuevo
+    
     AuthToken.push(token);
-    console.log("Backend!!",AuthToken[1]);
+    console.log("New token: ",AuthToken[1]);
 
 }
-console.log("Backend!!",AuthToken[1]);
+
 const instance = axios.create({
     
     baseURL: apiURL,
