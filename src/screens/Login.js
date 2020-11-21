@@ -70,7 +70,7 @@ const Login = ({navigation}) => {
         </View>
 
         <View style={styles.formAlign}>
-          <Item style={{ backgroundColor:'black' ,color:'black'}} >
+          <Item style={{ backgroundColor:'black', top: '3%'}} >
             <Input placeholder="Link" value={token} onChangeText={setToken} style={styles.enlaceInput} ></Input>
           </Item>
         </View>
@@ -101,22 +101,21 @@ const styles = StyleSheet.create({
         position:'relative',
         alignItems: "flex-start",
         justifyContent: "center",
-        minHeight:'10%'
+        minHeight:'10%',
+        backgroundColor: 'black'
         //paddingTop: Constants.statusBarHeight,
     },
     enlaceInput:
     {
       marginLeft:'7%',
       marginRight:'7%',
- 
       backgroundColor:'#F4DECB'
 
     },
     CuerpoDeIntrucciones:
     {
             flex: 1.5,
-            
-
+            backgroundColor: 'black',
             minHeight:'25%',
             justifyContent: "center"
     },
