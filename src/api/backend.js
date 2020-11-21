@@ -5,7 +5,7 @@ import getEnvVars from "../../enviroment";
 const { apiURL } = getEnvVars();
 import React , {useEffect, useState} from "react";
 
-let AuthToken=['BQC8ljiiuQudjRPc4VKYehOeuXuNzZxJkIo2O0oRJhioSuA13knm7kj3HfwkmsdCa-07z72P4PmOhi5lqxrfGZdPw_wYKpVCRp3mpStxJ4oQgH2qCPCJRvDIhXH3Cdfz6rXT4PXHIempinXhIolzML_m1srizdj_oNrTltoD-zp2c7wVpnW9_J-4ZRrOIiepZwltkLPEAZ5xualOnvy9-_QSP-q31MLD6tGPhIYDG4gaQ-ElwBrw72Iu4DZzKM3D-cwFrCZGWbLBWqY4oW70llY5fuqEjjJbbno'];
+let AuthToken=['BQCRPZ-1QPYXfQj0j11QDnVSbvOHVCl2KBHAepFzLEMQv-ZHkcU8PPIMqciuT3P6IaY5dF4fkecWTm9AdS3bzuQUiOpXL8yM_gfRmXK61BBgk7wvre4-j5aMtnZ0I1ZiQ_-UorXARQMPwiD0cGQEVOkLOtDgPvTBprLYrweO2qK-48V0E1JgIcxdHBcgUDvWcoFDa2CQOfvsJv9hzp7Geiu2o9GOVGCaXF66Ayd_qnsMOLjPYkgEVPN977uypusGRl2udAxQjOxOSKfnvp9sCneRpTUN-akx_aU'];
 
 /*
 Link para solicitar OAuth Token:

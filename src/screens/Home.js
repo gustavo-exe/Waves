@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {ObtenerToken}from "../api/backend";
-import { Content,H1, H3, Input, Container, Left, Spinner, Item, Card, Button,  CardItem, Body, header,Icon, Right} from "native-base";
+import {  Container,  Spinner, Button,  CardItem} from "native-base";
 import { StyleSheet, Image, Text, Dimensions ,FlatList, View} from 'react-native';
-//import { Entypo } from '@expo/vector-icons';
 import backend from "../api/backend";
-import getEnvVars from "../../enviroment";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
-import { Header } from "react-native/Libraries/NewAppScreen";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Valores del destructing
