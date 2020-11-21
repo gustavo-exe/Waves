@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet,View,Text,Dimensions, Image} from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
-//import Constants from 'expo-Constants';
 import { accessUrl } from '../../enviroment';
-import {Button, Container, Input, Item, Icon} from 'native-base';
-
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { color } from 'react-native-reanimated';
+import {Button, Input, Item} from 'native-base';
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 
@@ -97,36 +92,25 @@ const Login = ({navigation}) => {
 const styles = StyleSheet.create({
     TituloDeIntrucciones:
     {
-        flex: 2,
-        position:'relative',
-        alignItems: "flex-start",
-        justifyContent: "center",
-        minHeight:'10%',
-        backgroundColor: 'black'
-        //paddingTop: Constants.statusBarHeight,
+      flex: 2,
+      position:'relative',
+      alignItems: "flex-start",
+      justifyContent: "center",
+      minHeight:'10%',
+      backgroundColor: 'black'
     },
     enlaceInput:
     {
       marginLeft:'7%',
       marginRight:'7%',
       backgroundColor:'#F4DECB'
-
     },
-    CuerpoDeIntrucciones:
-    {
-            flex: 1.5,
-            backgroundColor: 'black',
-            minHeight:'25%',
-            justifyContent: "center"
-    },
-
     IntereaccionDeIntruscciones:
     {
-        flex: 1,
-        alignSelf: "center",
-        backgroundColor: 'black',
-        top: '-10%'
-        //paddingTop: Constants.statusBarHeight,
+      flex: 1,
+      alignSelf: "center",
+      backgroundColor: 'black',
+      top: '-10%'
     },
     Intructions:{
       fontWeight:'bold',
@@ -154,7 +138,6 @@ const styles = StyleSheet.create({
       backgroundColor:'black',
       marginLeft:'0%',
       marginRight:'7%'
-
     },
     estiloButton:{
       backgroundColor: '#49274A', 
@@ -166,9 +149,7 @@ const styles = StyleSheet.create({
       width: width,
       height: height * 0.15,
       resizeMode: "contain",
-    },
-
-    
+    },   
 });
 
 export default Login;
