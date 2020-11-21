@@ -17,7 +17,7 @@ const TopArtist = ({route, navigation}) =>
     const [top, setTop] = useState(null);
     const [error, setError] = useState(false);
     const [search, setSearch] = useState("");
-
+    const [searchError, setSearchError] = useState(false);
     //Promesas
 
     const getTop = async () =>  {
