@@ -230,7 +230,7 @@ const styles = StyleSheet.create
             right:20,
             width:width *0.81 ,
             height: height * 0.3,
-            margin: 20
+            margin: '5.5%'
         },
         flatList:
         {

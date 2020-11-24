@@ -73,7 +73,7 @@ const getAnAlbumTracks = async () =>  {
         const response = await backend.get(`albums/${idAlbum.id}/tracks?market=ES&limit=50&offset=0`);
         
         
-        console.log(response.data);
+        //console.log(response.data);
         setAnAlbumTracks(response.data);
      
     } catch (error) {
@@ -96,7 +96,7 @@ const getAnAlbumTracks = async () =>  {
 //Funcion alerta con las canciones del album
 function  AlertTrackList(idAlbumList)
 {
-     console.log(idAlbumList);
+     //console.log(idAlbumList);
      setIdAlbum(idAlbumList) ;
      getAnAlbumTracks();
      if (!anAlbumTracks)
@@ -107,7 +107,7 @@ function  AlertTrackList(idAlbumList)
         {
             //Llenar las variabes con solo los nombres de las canciones
             anAlbumTracks.items.map((element) => { setTrack(track.push(`\n${element.name}`));});
-            console.log(track);
+            //console.log(track);
             
             setIdAlbum(" ");
 

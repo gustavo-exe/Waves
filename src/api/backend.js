@@ -5,7 +5,7 @@ import{AsyncStorage} from "react-native";
 
 
 //Aqui tiene que ir el nuevo token
-let AuthToken=[''];
+let AuthToken=['Here OAuth Token'];
 
 /*
 Link para solicitar OAuth Token:
@@ -17,6 +17,7 @@ Para solicitar el token ocupamos 3 scopes:
     user-top-read
 */
 
+//Aplicando AsyncStorage
 
 async function ObtenerToken()
 {    
@@ -27,6 +28,7 @@ async function ObtenerToken()
 
 function imprimirToken() {
     console.log("Tu token:");
+    //Esta fue la unica forma que logramos sacar el token del AsyncStorage
     (async()=>console.log( await ObtenerToken()))()   
 }
 
