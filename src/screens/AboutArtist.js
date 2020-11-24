@@ -94,6 +94,7 @@ const getAnAlbumTracks = async () =>  {
 /*Alt + shift + a: para comentar las lineas seleccionadas*/
 
 //Funcion alerta con las canciones del album
+//Funciona a la 3 ves que precionan el boton, las primeras 2 solo cargan
 function  AlertTrackList(idAlbumList)
 {
      //console.log(idAlbumList);
