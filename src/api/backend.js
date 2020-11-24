@@ -5,7 +5,7 @@ import{AsyncStorage} from "react-native";
 
 
 //Aqui tiene que ir el nuevo token
-let AuthToken=['Here OAuth Token'];
+let AuthToken=['BQAkPAlURxSqy6315pfwZlcRmeIyKidvL0Y3lOpm1ySpOZ4SmObZsk1QgXs1ytHgVXYCqj9tyPfNmXDUHNArMjfcuOEvfHaYs5OLKsQmUNbhJHsoVnCZGM94pod1ivYz55Gdl7bs--2q1cokg2HR31MEDQhEVVAMN2RqrDNRBoFFGAnwmmuZiOeK1oX1eA'];
 
 /*
 Link para solicitar OAuth Token:
@@ -21,15 +21,34 @@ Para solicitar el token ocupamos 3 scopes:
 
 async function ObtenerToken()
 {    
-    return await AsyncStorage.getItem("token");
+    let objeto ={token:' '};
+    try {
+        const value = await AsyncStorage.getItem("token");
+        if (value !== null) {
+          // Tenemos datos
+          //console.log(value);
+          objeto.token=value;
+          //return objeto;
+
+        }
+      } catch (error) {
+        
+      }
+    //console.log(objeto.token);
+    return objeto;
 }
 
 //Aqui se imprime el authtoken que se almacena con el input
 
-function imprimirToken() {
+async function imprimirToken() {
+    //Esta fueron una de las formas que logramos sacar el token del AsyncStorage
+    
     console.log("Tu token:");
-    //Esta fue la unica forma que logramos sacar el token del AsyncStorage
-    (async()=>console.log( await ObtenerToken()))()   
+    console.log((await ObtenerToken()).token);
+    return((await ObtenerToken()).token);
+    
+    //(async()=>console.log( await ObtenerToken()))()   
+    //return await ObtenerToken();
 }
 
 //Esta funcion se hace para traer el token del input
