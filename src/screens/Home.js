@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {ObtenerToken}from "../api/backend";
+import {colocarToken}from "../api/backend";
 import {  Container,  Spinner, Button,  CardItem} from "native-base";
 import { StyleSheet, Image, Text, Dimensions ,FlatList, View} from 'react-native';
 import backend from "../api/backend";
@@ -12,7 +12,7 @@ const Home = ({route, navigation}) =>
 {
     const { token } = route.params;
     
-    ObtenerToken(token);
+    colocarToken(token);
 
     //manejo de los artistas
     const [artist, setArtist] = useState(null);
